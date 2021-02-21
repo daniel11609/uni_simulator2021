@@ -1,6 +1,8 @@
 idea
 .eslintcache
 package-lock.json
+yarn.lock
+
 # dependencies
 uni-sim-2021/node_modules
 uni-sim-2021/.pnp
