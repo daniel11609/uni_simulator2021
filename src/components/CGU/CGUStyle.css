@@ -1,0 +1,13 @@
+.RoomBox{
+    display: float;
+    justify-content: space-around;
+    align-items: center;
+    width:auto;
+    padding:25vh;
+    border: solid;
+    background-image: url('https://www.educationcorner.com/images/featured-classroom-design-layout.jpg');
+}
+.RoomBack{
+    height: 30%;
+    width: 30%;
+}
