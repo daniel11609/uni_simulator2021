@@ -31,7 +31,7 @@ export default class App extends React.Component {
                       integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
                       crossOrigin="anonymous"/>
                 <div className="container">
-                    <Navbar change_page={this.change_page} />
+                    {this.state.page === "login" ? (<h1 className="display-3 login-header">Uni-Simulator 2021</h1>) : (<Navbar change_page={this.change_page} />)}
                     <div className="spacer"/>
                     {this.page_handler()}
                 </div>
