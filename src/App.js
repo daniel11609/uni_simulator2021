@@ -5,16 +5,17 @@ import Login from "./components/page/Login";
 import Game from "./components/page/Game";
 import Shop from "./components/page/Shop";
 import Profs from "./components/page/Profs";
+import Settings from "./components/page/Settings";
 
 export default class App extends React.Component {
 
     constructor(props) {
         super(props);
-        if(this.load_from_storage("user_name")) {
+        if(localStorage.getItem("user_name") && localStorage.getItem("user_name") !== "") {
             console.log("Found session...")
             this.state = {
                 page: "game",
-                user_name: this.load_from_storage("user_name")
+                user_name: localStorage.getItem("user_name")
             }
         } else {
             this.state = {
@@ -26,11 +27,11 @@ export default class App extends React.Component {
     }
 
     save_to_storage(key, object) {
-        localStorage.setItem(key, object);
+        localStorage.setItem(this.state.user_name+"_"+key, object);
     }
 
     load_from_storage(key) {
-       return localStorage.getItem(key) ;
+       return localStorage.getItem(this.state.user_name+"_"+key) ;
     }
 
     change_page = async (page) => {
@@ -39,7 +40,14 @@ export default class App extends React.Component {
 
     set_user_name = async (user_name) => {
         await this.setState({user_name: user_name, page: "game"});
-        this.save_to_storage("user_name", user_name);
+        localStorage.setItem("user_name", user_name);
+    }
+
+    logout = async () => {
+        if(window.confirm("Do you really want to log out?")) {
+            localStorage.setItem("user_name", "");
+            window.location.href = "";
+        }
     }
 
     render() {
@@ -49,7 +57,7 @@ export default class App extends React.Component {
                       integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
                       crossOrigin="anonymous"/>
                 <div className="container">
-                    {this.state.page === "login" ? (<h1 className="display-3 login-header">Uni-Simulator 2021</h1>) : (<Navbar change_page={this.change_page} />)}
+                    {this.state.page === "login" ? (<h1 className="display-3 login-header">Uni-Simulator 2021</h1>) : (<Navbar mainstate={this.state} logout={this.logout} change_page={this.change_page} />)}
                     <div className="spacer"/>
                     {this.page_handler()}
                 </div>
@@ -67,6 +75,8 @@ export default class App extends React.Component {
                 return <Shop/>;
             case "profs":
                 return <Profs/>;
+            case "settings":
+                return <Settings/>;
             default:
                return "Something unexpected has happened. Please refresh your page.";
         }

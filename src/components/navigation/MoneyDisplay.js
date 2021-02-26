@@ -20,8 +20,9 @@ export default class MoneyDisplay extends React.Component
     
     render() {
         return(
-            <div>
+            <div style={{display: "flex", justifyContent: "flex-end"}}>
                 {this.state.amount+" "}
+                <span style={{width: "8px"}} />
                 {this.props.children}
             </div>
         );

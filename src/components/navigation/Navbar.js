@@ -11,13 +11,21 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import HomeIcon from '@material-ui/icons/Home';
 
 import MoneyDisplay from './MoneyDisplay'
 
+import '../../component-design/navigation/Navbar.css';
+
 export default class NavBar extends React.Component  {
 
-    constructor() {
-      super();
+    constructor(props) {
+        super(props);
+        this.state = {
+          page: this.props.mainstate.page,
+          user_name: this.props.mainstate.user_name
+        }
     }
 
       classes = makeStyles((theme) => ({
@@ -38,29 +46,34 @@ export default class NavBar extends React.Component  {
             <div className={this.classes.root}>
               <AppBar position="static">
                 <Toolbar style={{justifyContent: "space-between"}}>
-                  <IconButton edge="start" className={this.classes.menuButton} color="inherit" aria-label="menu">
-                    <Paper className={this.classes.paper}>
-                      <Button><SettingsIcon></SettingsIcon></Button>
-                      <Button  onClick={async () => {await this.props.change_page("shop")}} > Shop </Button>
-                      <Button onClick={async() => {await this.props.change_page("profs")}}> Profs </Button>
-                    </Paper>
-                  </IconButton>
-                  <Typography variant="h6" className={this.classes.title}>
-                    Uni- Simulator 2021
-                  </Typography>
+                  <div className="nav-container-left">
+                      <div className="playing-as">
+                          Playing as <strong>{this.state.user_name}</strong><span style={{marginRight: "5px"}}/>
+                          <ExitToAppIcon style={{cursor: "pointer"}} onClick={async () => {await this.props.logout()}} />
+                      </div>
+                      <IconButton edge="start" className={this.classes.menuButton} color="inherit" aria-label="menu">
+                            <Paper className={this.classes.paper}>
+                                <Button><HomeIcon onClick={async () => {await this.props.change_page("game")}} /></Button>
+                                <Button  onClick={async () => {await this.props.change_page("shop")}} > Shop </Button>
+                                <Button onClick={async() => {await this.props.change_page("profs")}}> Profs </Button>
+                                <Button><SettingsIcon onClick={async() => {await this.props.change_page("settings")}} /></Button>
+                            </Paper>
+                      </IconButton>
+                  </div>
+                  <h5 className="display-5">Uni-Simulator 2021</h5>
                   <Grid  direction="column" style={{width:"100px"}}>
-                    <Grid item xs={12} spacing={3} style={{paddingTop:"5px",paddingBottom:"5px"}}>
+                    <Grid item xs={9} spacing={3} style={{paddingTop:"5px",paddingBottom:"5px"}}>
                       <Paper className={this.classes.paper}>
                         <MoneyDisplay id={"student"} amount={0}> <SupervisedUserCircleIcon></SupervisedUserCircleIcon> </MoneyDisplay>
                       </Paper>
                     </Grid>
-                    <Grid item xs={12} spacing={3} style={{paddingBottom:"5px"}}>
+                    <Grid item xs={9} spacing={3} style={{paddingBottom:"5px"}}>
                       <Paper className={this.classes.paper} >
                         <MoneyDisplay id={"exmat"} amount={0}> <RemoveCircleOutlineIcon></RemoveCircleOutlineIcon> </MoneyDisplay>
                       </Paper>
                     </Grid>
 
-                    <Grid item xs={12} spacing={3}style={{paddingBottom:"5px"}}>
+                    <Grid item xs={9} spacing={3}style={{paddingBottom:"5px"}}>
                       <Paper className={this.classes.paper}>
                         <MoneyDisplay id={"degree"} amount={0}> <AssignmentTurnedInIcon></AssignmentTurnedInIcon> </MoneyDisplay>
                       </Paper>

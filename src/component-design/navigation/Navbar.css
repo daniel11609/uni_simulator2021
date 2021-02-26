@@ -1,0 +1,9 @@
+.playing-as {
+    font-size: 15px;
+    text-align: left;
+}
+
+.nav-container-left {
+    display: flex;
+    flex-direction: column;
+}
