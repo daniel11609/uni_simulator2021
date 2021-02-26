@@ -1,7 +1,10 @@
 idea
 .eslintcache
+eslintcache
 package-lock.json
 yarn.lock
+node_modules
+.idea
 
 # dependencies
 uni-sim-2021/node_modules
