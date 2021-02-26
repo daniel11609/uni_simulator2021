@@ -6,6 +6,7 @@ import Game from "./components/page/Game";
 import Shop from "./components/page/Shop";
 import Profs from "./components/page/Profs";
 import Settings from "./components/page/Settings";
+import Config from "./helper/Config.js"
 
 export default class App extends React.Component {
 
@@ -15,40 +16,42 @@ export default class App extends React.Component {
             console.log("Found session...")
             this.state = {
                 page: "game",
-                user_name: localStorage.getItem("user_name")
+                user_name: localStorage.getItem("user_name"),
+                rooms: [
+                    this.load_from_storage("room_1"),
+                    this.load_from_storage("room_2"),
+                    this.load_from_storage("room_3"),
+                    this.load_from_storage("room_4"),
+                    this.load_from_storage("room_5"),
+                    this.load_from_storage("room_6"),
+                    this.load_from_storage("room_7"),
+                    this.load_from_storage("room_8"), // TODO: schleife (manu)
+                    this.load_from_storage("room_9"),
+                    this.load_from_storage("room_10"),
+                    this.load_from_storage("room_11"),
+                    this.load_from_storage("room_12"),
+                    this.load_from_storage("room_13"),
+                ]
             }
         } else {
             this.state = {
                 page: "login",
                 user_name: "",
-                // rooms: [{name: "xy", "ausstattung": []}, ]
+                rooms: Config.rooms
             }
         }
     }
 
-    save_to_storage(key, object) {
-        localStorage.setItem(this.state.user_name+"_"+key, object);
+    componentDidMount() {
+        this.setState({
+            exit_time_update_process: setInterval(()=>this.exit_time_updater(),1000),
+        })
     }
 
-    load_from_storage(key) {
-       return localStorage.getItem(this.state.user_name+"_"+key) ;
+    componentWillUnmount() {
+        clearInterval(this.state.exit_time_update_process);
     }
 
-    change_page = async (page) => {
-        await this.setState({page: page});
-    }
-
-    set_user_name = async (user_name) => {
-        await this.setState({user_name: user_name, page: "game"});
-        localStorage.setItem("user_name", user_name);
-    }
-
-    logout = async () => {
-        if(window.confirm("Do you really want to log out?")) {
-            localStorage.setItem("user_name", "");
-            window.location.href = "";
-        }
-    }
 
     render() {
         return (
@@ -79,6 +82,36 @@ export default class App extends React.Component {
                 return <Settings/>;
             default:
                return "Something unexpected has happened. Please refresh your page.";
+        }
+    }
+
+    save_to_storage(key, object) {
+        localStorage.setItem(this.state.user_name+"_"+key, object);
+    }
+
+    load_from_storage(key) {
+        return localStorage.getItem(this.state.user_name+"_"+key) ;
+    }
+
+    change_page = async (page) => {
+        await this.setState({page: page});
+    }
+
+    set_user_name = async (user_name) => {
+        await this.setState({user_name: user_name, page: "game"});
+        localStorage.setItem("user_name", user_name);
+    }
+
+    logout = async () => {
+        if(window.confirm("Do you really want to log out?")) {
+            localStorage.setItem("user_name", "");
+            window.location.href = "";
+        }
+    }
+
+    exit_time_updater() {
+        if(this.state.page !== "login") {
+            this.save_to_storage("exit_time", Date.now());
         }
     }
 

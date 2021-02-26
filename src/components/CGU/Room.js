@@ -9,7 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
+import LockIcon from '@material-ui/icons/Lock';
 
 export default class Room extends React.Component {
 
@@ -25,6 +25,8 @@ export default class Room extends React.Component {
         }
     }
 
+    // TODO for room calc query if prof is inside else give 0.5 0.5 to room calc
+
 
     render() {
         return(
@@ -36,14 +38,10 @@ export default class Room extends React.Component {
                         </div>
                     ) : ( // locked
                         <div>
-                            You did not freischalt this room yet.
+                            <LockIcon/>
                         </div>
                     )
                 }
-                <button className='UpgradeBtn'>Upgrade</button>
-                <button className='RunBtn'>Run</button>
-
-
             </div>
 
         );
@@ -79,10 +77,10 @@ export default class Room extends React.Component {
                 </CardActionArea>
                 <CardActions>
                     <Button size="small" color="primary">
-                        Share
+                        Run
                     </Button>
                     <Button size="small" color="primary">
-                        Learn More
+                        Upgrade
                     </Button>
                 </CardActions>
             </Card>
