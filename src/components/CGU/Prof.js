@@ -7,7 +7,9 @@ export default class Prof extends React.Component {
         this.state = {
             id: 0,
             name: "",
-            svg: ""
+            svg: "",
+            pop: "",
+            ex: ""
         }
     }
 
