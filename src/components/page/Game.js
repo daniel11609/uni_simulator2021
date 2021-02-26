@@ -1,6 +1,7 @@
 import React from "react";
 
 import '../../component-design/page/Game.css';
+import Room from "../CGU/Room";
 
 export default class Game extends React.Component {
 
@@ -15,7 +16,7 @@ export default class Game extends React.Component {
     render() {
         return (
             <div className="Game">
-                Game
+                <Room></Room>
             </div>
         );
     }

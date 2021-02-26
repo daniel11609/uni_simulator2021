@@ -5,28 +5,35 @@ export default class MoneyDisplay extends React.Component
     constructor(props) {
         super(props);
         this.state = {
-                    currency:this.props.currency,
-                    amount:0,
-              }
+            id: this.props.id,
+            amount: this.props.amount,
         }
-    
-    render()
-    {
-        return(<div>{this.state.amount+" "+this.state.currency}</div>);
     }
-    componentDidMount(){
+
+    componentDidMount() {
         this.ticker = setInterval(()=>this.tick(),1000);
     }
 
-    componentWillUnmount()
-    {
+    componentWillUnmount() {
         clearInterval(this.ticker);
     }
-    tick(){
-        let oldamount = this.state.amount
-        //Imolementieren woher wie die Wärhung beommen
+    
+    render() {
+        return(
+            <div>
+                {this.state.amount+" "}
+                {this.props.children}
+            </div>
+        );
+    }
+
+
+    tick() {
+        let old_amount = this.state.amount
+
+        // TODO: get currency
         this.setState({
-            amount: oldamount+1
+            amount: old_amount+1
         })
 
     }
