@@ -1,6 +1,6 @@
 import React from 'react';
 import Prof from './Prof'
-import './CGUStyle.css';
+import '../../component-design/CGU/CGUStyle.css';
 const Room = (props) => {
     
     return(
