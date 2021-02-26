@@ -10,18 +10,36 @@ export default class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            page: "login",
-            user_name: ""
+        if(this.load_from_storage("user_name")) {
+            console.log("Found session...")
+            this.state = {
+                page: "game",
+                user_name: this.load_from_storage("user_name")
+            }
+        } else {
+            this.state = {
+                page: "login",
+                user_name: "",
+                // rooms: [{name: "xy", "ausstattung": []}, ]
+            }
         }
     }
 
+    save_to_storage(key, object) {
+        localStorage.setItem(key, object);
+    }
+
+    load_from_storage(key) {
+       return localStorage.getItem(key) ;
+    }
+
     change_page = async (page) => {
-        await this.setState({page: page})
+        await this.setState({page: page});
     }
 
     set_user_name = async (user_name) => {
-        await this.setState({user_name: user_name, page: "game"})
+        await this.setState({user_name: user_name, page: "game"});
+        this.save_to_storage("user_name", user_name);
     }
 
     render() {
@@ -50,7 +68,7 @@ export default class App extends React.Component {
             case "profs":
                 return <Profs/>;
             default:
-               return "Something unexpected has happened. Please refresh your page."
+               return "Something unexpected has happened. Please refresh your page.";
         }
     }
 
