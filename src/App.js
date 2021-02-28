@@ -12,39 +12,17 @@ export default class App extends React.Component {
 
     constructor(props) {
         super(props);
-        if(localStorage.getItem("user_name") && localStorage.getItem("user_name") !== "") {
-            console.log("Found session...")
-            this.state = {
-                page: "game",
-                user_name: localStorage.getItem("user_name"),
-                rooms: [
-                    this.load_from_storage("room_1"),
-                    this.load_from_storage("room_2"),
-                    this.load_from_storage("room_3"),
-                    this.load_from_storage("room_4"),
-                    this.load_from_storage("room_5"),
-                    this.load_from_storage("room_6"),
-                    this.load_from_storage("room_7"),
-                    this.load_from_storage("room_8"), // TODO: schleife (manu)
-                    this.load_from_storage("room_9"),
-                    this.load_from_storage("room_10"),
-                    this.load_from_storage("room_11"),
-                    this.load_from_storage("room_12"),
-                    this.load_from_storage("room_13"),
-                ]
-            }
-        } else {
-            this.state = {
-                page: "login",
-                user_name: "",
-                rooms: Config.rooms
-            }
+        this.state = {
+            loading: true
         }
     }
 
     componentDidMount() {
-        this.setState({
-            exit_time_update_process: setInterval(()=>this.exit_time_updater(),1000),
+        this.game_state_loader().then(() => {
+            this.setState({
+                loading: false,
+                exit_time_update_process: setInterval(()=>this.exit_time_updater(),1000)
+            })
         })
     }
 
@@ -60,9 +38,17 @@ export default class App extends React.Component {
                       integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
                       crossOrigin="anonymous"/>
                 <div className="container">
-                    {this.state.page === "login" ? (<h1 className="display-3 login-header">Uni-Simulator 2021</h1>) : (<Navbar mainstate={this.state} logout={this.logout} change_page={this.change_page} />)}
-                    <div className="spacer"/>
-                    {this.page_handler()}
+                    {this.state.loading ? (
+                        <div>
+                            Loading...
+                        </div>
+                    ) : (
+                        <div>
+                            {this.state.page === "login" ? (<h1 className="display-3 login-header">Uni-Simulator 2021</h1>) : (<Navbar mainstate={this.state} logout={this.logout} change_page={this.change_page} />)}
+                            <div className="spacer"/>
+                            {this.page_handler()}
+                        </div>
+                    )}
                 </div>
             </div>
         );
@@ -112,6 +98,37 @@ export default class App extends React.Component {
     exit_time_updater() {
         if(this.state.page !== "login") {
             this.save_to_storage("exit_time", Date.now());
+        }
+    }
+
+    async game_state_loader() {
+        if(localStorage.getItem("user_name") && localStorage.getItem("user_name") !== "") {
+            console.log("Found session...")
+            await this.setState({
+                page: "game",
+                user_name: localStorage.getItem("user_name"),
+                rooms: [
+                    this.load_from_storage("room_1"),
+                    this.load_from_storage("room_2"),
+                    this.load_from_storage("room_3"),
+                    this.load_from_storage("room_4"),
+                    this.load_from_storage("room_5"),
+                    this.load_from_storage("room_6"),
+                    this.load_from_storage("room_7"),
+                    this.load_from_storage("room_8"), // TODO: schleife (manu)
+                    this.load_from_storage("room_9"),
+                    this.load_from_storage("room_10"),
+                    this.load_from_storage("room_11"),
+                    this.load_from_storage("room_12"),
+                    this.load_from_storage("room_13"),
+                ]
+            })
+        } else {
+            await this.setState({
+                page: "login",
+                user_name: "",
+                rooms: Config.rooms
+            })
         }
     }
 
