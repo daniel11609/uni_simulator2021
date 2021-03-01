@@ -66,13 +66,13 @@ test('test username error (too long)', async () => {
   const userNameInput = await screen.findByPlaceholderText(/Username/i);
 
   // act: input a username which is too long (>20 characters)
-  fireEvent.change(userNameInput, { target: { value: 'AAAAAAAAAAAAAAAAAAAAA' } })
+  fireEvent.change(userNameInput, { target: { value: 'ABCDEFGHIJKLMNOPQRSTU' } })
 
   const errorMsg = await screen.findByText(/Your username cannot be longer than 20 characters./i);
 
 
   // assert: check value; check if error gets shown
-  expect(userNameInput.value).toBe('AAAAAAAAAAAAAAAAAAAAA');
+  expect(userNameInput.value).toBe('ABCDEFGHIJKLMNOPQRSTU');
   expect(errorMsg).toBeInTheDocument();
 
 });
