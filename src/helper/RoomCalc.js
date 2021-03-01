@@ -11,10 +11,10 @@ class RoomCalc {
         }
         else
         {
-             pop = prof.getPopuarity();
-             ex = prof.getExmatric();
+             pop = prof.popuarity;
+             ex = prof.exmatric;
         }
-        let capacity = room.getCapacity();
+        let capacity = room.capacity;
         let students = Math.round(pop*capacity+0.5);
         let exmatric = Math.round(students*ex-0.5); 
         let degrees = students-exmatric;

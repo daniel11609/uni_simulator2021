@@ -51,7 +51,7 @@ export default class App extends React.Component {
                             ) : ( // navigation for game pages
                                 <div>
                                     <Navbar mainstate={this.state} logout={this.logout} change_page={this.change_page} />
-                                    <img className="background-image" src="/background/ground_and_sky.svg" />
+                                    <img className="background-image" src="/background/ground_and_sky.svg"  />
                                 </div>
                                 )
                             }
