@@ -1,0 +1,12 @@
+.ShopItem {
+    width: 33.3%;
+    padding: 10px 10px 10px 10px;
+}
+
+.badge-shop-item {
+    font-size: 25px;
+}
+
+.shop-item-title-wrapper {
+    display: flex;
+}

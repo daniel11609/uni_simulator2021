@@ -18,6 +18,8 @@ export default class App extends React.Component {
     }
 
     componentDidMount() {
+        // async game state loader:
+        // load existing or generate new game state --> asynchronous, change loading to false when done so all gathered data can be rendered, else null pointer exceptions
         this.game_state_loader().then(() => {
             this.setState({
                 loading: false,
@@ -38,15 +40,20 @@ export default class App extends React.Component {
                       integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
                       crossOrigin="anonymous"/>
                 <div className="container">
-                    {this.state.loading ? (
+                    {this.state.loading ? ( // gets shown before game state is loaded
                         <div>
                             Loading...
                         </div>
-                    ) : (
+                    ) : ( // finished game state loading, entry point for actual game
                         <div>
-                            {this.state.page === "login" ? (<h1 className="display-3 login-header">Uni-Simulator 2021</h1>) : (<Navbar mainstate={this.state} logout={this.logout} change_page={this.change_page} />)}
+                            {this.state.page === "login" ? ( // login page
+                                <h1 className="display-3 login-header">Uni-Simulator 2021</h1>
+                            ) : ( // navigation for game pages
+                                <Navbar mainstate={this.state} logout={this.logout} change_page={this.change_page} />
+                                )
+                            }
                             <div className="spacer"/>
-                            {this.page_handler()}
+                            {this.page_handler() /* renders selected pages*/}
                         </div>
                     )}
                 </div>
@@ -61,7 +68,7 @@ export default class App extends React.Component {
             case "game":
                 return <Game/>;
             case "shop":
-                return <Shop/>;
+                return <Shop items={this.state.items} />;
             case "profs":
                 return <Profs/>;
             case "settings":
@@ -71,22 +78,10 @@ export default class App extends React.Component {
         }
     }
 
-    save_to_storage(key, object) {
-        localStorage.setItem(this.state.user_name+"_"+key, object);
-    }
-
-    load_from_storage(key) {
-        return localStorage.getItem(this.state.user_name+"_"+key) ;
-    }
-
     change_page = async (page) => {
         await this.setState({page: page});
     }
 
-    set_user_name = async (user_name) => {
-        await this.setState({user_name: user_name, page: "game"});
-        localStorage.setItem("user_name", user_name);
-    }
 
     logout = async () => {
         if(window.confirm("Do you really want to log out?")) {
@@ -101,35 +96,80 @@ export default class App extends React.Component {
         }
     }
 
+
+    // STORAGE FUNCTIONS
+
+    save_to_storage(key, object) {
+        // local storage can only store strings, so we convert the json data of the object to a string
+        localStorage.setItem(this.state.user_name+"_"+key, JSON.stringify(object));
+    }
+
+    load_from_storage(key) {
+        // we convert the string json data to a real object and return it
+        return JSON.parse(localStorage.getItem(this.state.user_name+"_"+key));
+    }
+
+    set_user_name = async (user_name) => {
+        await this.setState({user_name: user_name, page: "game"});
+        await localStorage.setItem("user_name", user_name);
+
+        // check if this user has been playing on this account before and was logged out:
+        // for this we have a defined playing_history variable with the user_name in its name
+        if(await localStorage.getItem("playing_history_"+user_name)) {
+            console.log("Loading old game state...");
+            await this.load_existing_game_state();
+        } else { // did not find user_name in history variables
+            await this.setState({
+                rooms: Config.rooms,
+                items: Config.items
+            })
+            // save initial game state to local storage and bind it to current user_name
+            for(let r = 0; r < Config.rooms.length; r++) {
+                await this.save_to_storage("room_"+(r+1), this.state.rooms[r]);
+            }
+            for(let i = 0; i < Config.items.length; i++) {
+                await this.save_to_storage("item_"+(i+1), this.state.items[i]);
+            }
+            console.log(this.state.items)
+            localStorage.setItem("playing_history_"+user_name, "true")
+        }
+
+
+    }
+
     async game_state_loader() {
+        // check if active user_name is in local storage
         if(localStorage.getItem("user_name") && localStorage.getItem("user_name") !== "") {
             console.log("Found session...")
             await this.setState({
                 page: "game",
                 user_name: localStorage.getItem("user_name"),
-                rooms: [
-                    this.load_from_storage("room_1"),
-                    this.load_from_storage("room_2"),
-                    this.load_from_storage("room_3"),
-                    this.load_from_storage("room_4"),
-                    this.load_from_storage("room_5"),
-                    this.load_from_storage("room_6"),
-                    this.load_from_storage("room_7"),
-                    this.load_from_storage("room_8"), // TODO: schleife (manu)
-                    this.load_from_storage("room_9"),
-                    this.load_from_storage("room_10"),
-                    this.load_from_storage("room_11"),
-                    this.load_from_storage("room_12"),
-                    this.load_from_storage("room_13"),
-                ]
             })
-        } else {
+            await this.load_existing_game_state()
+
+        } else { // did not find any entries for this *active* user_name
             await this.setState({
                 page: "login",
-                user_name: "",
-                rooms: Config.rooms
+                user_name: ""
             })
         }
     }
+
+
+    async load_existing_game_state() {
+        // load existing game components from local storage
+        let rooms = []
+        let items = []
+        for(let r = 0; r < Config.rooms.length; r++) {
+            await rooms.push(await this.load_from_storage("room_"+(r+1)));
+        }
+        for(let i = 0; i < Config.items.length; i++) {
+            await items.push(await this.load_from_storage("item_"+(i+1)));
+        }
+        await this.setState({items: items, rooms: rooms});
+        console.log(this.state.items)
+    }
+
+
 
 }
