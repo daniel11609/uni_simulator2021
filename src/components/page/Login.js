@@ -19,7 +19,7 @@ export default class Login extends React.Component {
     }
 
     async name_change(name) {
-        if(name.length < 3) {
+        if(name.length < 4) {
             await this.setState({user_name: name, error: "Your username has to be longer than 3 characters."})
         } else if(name.length > 20) {
             await this.setState({user_name: name, error: "Your username cannot be longer than 20 characters."})
