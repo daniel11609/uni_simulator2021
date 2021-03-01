@@ -1,18 +1,33 @@
 import React from 'react';
 
 export default class Prof extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            id: 0,
-            name: "",
-            svg: "",
-            pop: "",
-            ex: ""
+    
+        constructor(props) {
+            super(props);
+            this.state = {
+                name:this.props.name,
+                id:this.props.id,
+                popularity:this.props.popularity, 
+                exmatric:this.props.exmatric,
+                svg:this.props.svg,
+            }
         }
-    }
-
+    
+        getPopuarity(){
+            return(this.state.popularity);
+        }
+        getID(){
+            return(this.state.id);
+        }
+        getName(){
+            return(this.state.name);
+        }
+        getExmatric(){
+            return(this.state.exmatric);
+        }
+        getImg(){
+            return (this.state.img)
+        }
 
     render() {
         return (

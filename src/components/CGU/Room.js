@@ -27,7 +27,10 @@ export default class Room extends React.Component {
 
     // TODO for room calc query if prof is inside else give 0.5 0.5 to room calc
 
-
+    getCapacity()
+    {
+        return (this.state.capacity);
+    }
     render() {
         return(
             <div className='Room' >
