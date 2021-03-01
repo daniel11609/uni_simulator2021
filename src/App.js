@@ -49,7 +49,10 @@ export default class App extends React.Component {
                             {this.state.page === "login" ? ( // login page
                                 <h1 className="display-3 login-header">Uni-Simulator 2021</h1>
                             ) : ( // navigation for game pages
-                                <Navbar mainstate={this.state} logout={this.logout} change_page={this.change_page} />
+                                <div>
+                                    <Navbar mainstate={this.state} logout={this.logout} change_page={this.change_page} />
+                                    <img className="background-image" src="/background/ground_and_sky.svg" />
+                                </div>
                                 )
                             }
                             <div className="spacer"/>
