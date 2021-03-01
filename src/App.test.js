@@ -41,7 +41,12 @@ test('test username length limits (too short)', async () => {
  
   // assert: check if error msg get shown; check for value of username
   expect(errorMsg).toBeInTheDocument();
+
+  // check if value of username is correct
   expect(userNameInput.value).toBe('00');
+
+  // make sure play button is active
+  expect(playButton).toBeDisabled();
 
 });
 
