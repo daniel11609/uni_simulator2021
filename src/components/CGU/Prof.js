@@ -13,21 +13,6 @@ export default class Prof extends React.Component {
             }
         }
     
-        getPopuarity(){
-            return(this.state.popularity);
-        }
-        getID(){
-            return(this.state.id);
-        }
-        getName(){
-            return(this.state.name);
-        }
-        getExmatric(){
-            return(this.state.exmatric);
-        }
-        getImg(){
-            return (this.state.img)
-        }
 
     render() {
         return (

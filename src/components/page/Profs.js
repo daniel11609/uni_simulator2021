@@ -7,11 +7,7 @@ export default class Profs extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name:"",
-            id:"",
-            popularity:0, 
-            exmatriculation:0,
-            
+
         }
     }
 
