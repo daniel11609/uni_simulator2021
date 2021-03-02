@@ -1,12 +1,23 @@
 # Uni_Simulator 2021 [![DeepSource](https://deepsource.io/gh/daniel11609/uni_simulator2021.svg/?label=active+issues&show_trend=true&token=jQLXGMOn8jGODE-Paf760L9P)](https://deepsource.io/gh/daniel11609/uni_simulator2021/?ref=repository-badge) [![DeepSource](https://deepsource.io/gh/daniel11609/uni_simulator2021.svg/?label=resolved+issues&show_trend=true&token=jQLXGMOn8jGODE-Paf760L9P)](https://deepsource.io/gh/daniel11609/uni_simulator2021/?ref=repository-badge)
 
 
+Uni simulator 2021 is a university project within the scope of the Software Engineering I course at the DHBW Ravensburg at the Friedrichshafen campus.
+
+The goal of the project is to create a browser game that combines the two aspects of a clicker game with a simulation of everyday university life.
+
+The technologies used mainly include: 
+HTML, JavaScript, React.js, Photoshop
+
+Contributors:
+Joschua Sillmann, Alessa Bayer, Cedric Schmidt, Daniel Erhard, Manuel Emmert, Tim Bader, Xena Letters, Elenora Stober 
+
 
 
 
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 DOWNLOAD NODE.JS (https://nodejs.org/de/download/)
 
 ## Available Scripts
