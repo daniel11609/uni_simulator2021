@@ -30,10 +30,10 @@ export default class ProfListing extends React.Component
                                 <h5 class="card-title">{val.name}</h5>
                                 <p class="card-text">
                                     <ul><li>
-                                        Popularity: {val.pop}
+                                        Popularity: {val.pop*100}%
                                         </li>
                                         <li>
-                                        Exmatriculation: {val.ex}
+                                        Exmatriculation: {val.ex*100}%
                                         </li></ul>
                                 </p>
                             </div>
