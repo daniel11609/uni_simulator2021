@@ -46,4 +46,9 @@ export default class Config {
                     {id:12, name:"Prof. Pong", locked: true, img:"/profs/prof12.svg", pop:0, ex:2, price:69},
                     {id:13, name:"Holy Nicotina", locked: true, img:"/profs/prof13.svg", pop:0, ex:2, price:69},
                     {id:14, name:"Mc Data", locked: true, img:"/profs/prof14.svg", pop:0, ex:2, price:69}]
+                    
+    static currencies =  [{id:1, name:"student",amount:0},
+                        {id:2,name:"exmat",amount:1},
+                        {id:3,name:"degree",amount:2},
+    ]
 }

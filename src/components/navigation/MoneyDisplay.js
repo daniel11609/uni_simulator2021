@@ -27,14 +27,16 @@ export default class MoneyDisplay extends React.Component
             </div>
         );
     }
-
-
+    load_from_storage(key) {
+        // we convert the string json data to a real object and return it
+        return JSON.parse(localStorage.getItem(this.state.user_name+"_"+key));
+    }
     tick() {
-        let old_amount = this.state.amount
+        let amount = this.load_from_storage("currencies_"+this.props.id)
 
         // TODO: get currency
         this.setState({
-            amount: old_amount+1
+            amount: amount
         })
 
     }
