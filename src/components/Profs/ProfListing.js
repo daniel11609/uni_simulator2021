@@ -6,43 +6,45 @@ export default class ProfListing extends React.Component
     constructor(props) {
         super(props);
         this.state = {
-           id:this.props.prof.id,
-           ex:this.props.prof.ex,
-           pop:this.props.prof.pop,
-           img:this.props.prof.img,
-           name:this.props.prof.name,
-           locked:this.props.locked
         }
     }
 
    
     
     render() {
-        const testelements = [{image: this.state.img, name: this.state.name, pop: this.state.pop, ex: this.state.ex}, {image: this.state.img, name: this.state.name, pop: this.state.pop, ex: this.state.ex}];
-
         const reshtml = [];
-
-        for (const [idx, val] of testelements.entries()){
-            reshtml.push(
-            <div className='ProfBumper'>
-                <div class="card" style={{width: "18rem"}}>
-                    <img src={val.image} class="card-img-top" alt="..."/>
-                    <div class="card-body">
-                        <h5 class="card-title">{val.name}</h5>
-                        <p class="card-text">
-                            <ul><li>
-                                Popularity: {val.pop}
-                                </li>
-                                <li>
-                                Exmatriculation:{val.ex}
-                                </li></ul>
-                        </p>
+        var btnProf;
+        console.log(this.props.prof)
+        for (const [idx, val] of this.props.prof.entries()){
+            if (val.locked){
+                btnProf = (<button type="button" class="btn btn-primary">Buy for {val.price} Ex</button>)
+            }else{
+                btnProf = (<button type="button" class="btn btn-primary">Add to room</button>)
+            }
+            if (val.locked == this.props.displayInShop){
+                reshtml.push(
+                    <div className='ProfBumper'>
+                        <div class="card" style={{width: "18rem"}}>
+                            <img src={val.img} class="card-img-top" alt="..."/>
+                            <div class="card-body">
+                                <h5 class="card-title">{val.name}</h5>
+                                <p class="card-text">
+                                    <ul><li>
+                                        Popularity: {val.pop}
+                                        </li>
+                                        <li>
+                                        Exmatriculation: {val.ex}
+                                        </li></ul>
+                                </p>
+                            </div>
+                            <div class="card-footer">{}
+                                {btnProf}
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                        <button type="button" class="btn btn-primary">Add to room</button>
-                    </div>
-                </div>
-            </div>)
+                )
+            }
+            
         }
 
         return(

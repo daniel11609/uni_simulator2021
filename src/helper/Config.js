@@ -32,4 +32,6 @@ export default class Config {
         {equipment:4, time: 20000},
         {equipment:5, time: 15000},]
 
+    static profs = [{id:1, name:"Herberta, the slave", locked: false, img:"/profs/prof1.svg", pop:0, ex:2, price:69},
+                    {id:2, name:"Herberto, the free man", locked: true, img:"/profs/prof2.svg", pop:0, ex:2, price:999}]
 }

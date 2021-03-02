@@ -70,9 +70,9 @@ export default class App extends React.Component {
             case "game":
                 return <Game rooms={this.state.rooms} />;
             case "shop":
-                return <Shop items={this.state.items} />;
+                return <Shop items={this.state.items} profs={this.state.profs}/>;
             case "profs":
-                return <Profs/>;
+                return <Profs profs={this.state.profs}/>;
             case "settings":
                 return <Settings/>;
             default:
@@ -123,7 +123,8 @@ export default class App extends React.Component {
         } else { // did not find user_name in history variables
             await this.setState({
                 rooms: Config.rooms,
-                items: Config.items
+                items: Config.items,
+                profs: Config.profs
             })
             // save initial game state to local storage and bind it to current user_name
             for(let r = 0; r < Config.rooms.length; r++) {
@@ -131,6 +132,9 @@ export default class App extends React.Component {
             }
             for(let i = 0; i < Config.items.length; i++) {
                 await this.save_to_storage("item_"+(i+1), this.state.items[i]);
+            }
+            for(let i = 0; i < Config.profs.length; i++) {
+                await this.save_to_storage("prof_"+(i+1), this.state.profs[i]);
             }
             localStorage.setItem("playing_history_"+user_name, "true")
             await this.setState({page: "game"})
@@ -162,13 +166,17 @@ export default class App extends React.Component {
         // load existing game components from local storage
         let rooms = []
         let items = []
+        let profs = []
         for(let r = 0; r < Config.rooms.length; r++) {
             await rooms.push(await this.load_from_storage("room_"+(r+1)));
         }
         for(let i = 0; i < Config.items.length; i++) {
             await items.push(await this.load_from_storage("item_"+(i+1)));
         }
-        await this.setState({items: items, rooms: rooms});
+        for(let j = 0; j < Config.profs.length; j++) {
+            await profs.push(await this.load_from_storage("prof_"+(j+1)));
+        }
+        await this.setState({items: items, rooms: rooms, profs: profs});
     }
 
 
