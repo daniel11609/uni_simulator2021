@@ -95,6 +95,9 @@ export default class Room extends React.Component {
 
     }
 
+    doUpdate(){
+        //do update enough money ? -> update-> write in local storage  
+    }
     get_media_card() {
         const classes = makeStyles({
             root: {
@@ -136,7 +139,7 @@ export default class Room extends React.Component {
                     </Button>):
                     (<div></div>)//when prof , render progress bar
                     }
-                    <Button size="small" color="primary">
+                    <Button size="small" color="primary" onClick={()=>this.doUpdate()}>
                         Upgrade
                     </Button>
                 </CardActions>
