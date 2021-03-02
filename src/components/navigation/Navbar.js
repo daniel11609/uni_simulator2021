@@ -50,8 +50,8 @@ export default class NavBar extends React.Component  {
                           Playing as <strong>{this.state.user_name}</strong><span style={{marginRight: "5px"}}/>
                           <ExitToAppIcon style={{cursor: "pointer"}} onClick={async () => {await this.props.logout()}} />
                       </div>
-                      <IconButton edge="start" className={this.classes.menuButton} color="inherit" aria-label="menu">
-                            <Paper className={this.classes.paper}>
+                      <IconButton edge="start" className={this.classes.menuButton} color="inherit" aria-label="menu" style={{paddingTop: "7px"}}>
+                            <Paper className={this.classes.paper} style={{height: "42px"}}>
                                 <Button><HomeIcon onClick={async () => {await this.props.change_page("game")}} /></Button>
                                 <Button  onClick={async () => {await this.props.change_page("shop")}} > Shop </Button>
                                 <Button onClick={async() => {await this.props.change_page("profs")}}> Profs </Button>
