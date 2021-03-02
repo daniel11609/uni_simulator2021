@@ -18,3 +18,12 @@
     text-align: center;
     background-color: white;
 }
+
+.ProfBumper {
+    transition: transform .2s;
+    cursor: pointer;
+}
+
+.ProfBumper:hover {
+    transform: scale(1.02);
+}
