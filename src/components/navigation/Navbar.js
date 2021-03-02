@@ -59,7 +59,7 @@ export default class NavBar extends React.Component  {
                             </Paper>
                       </IconButton>
                   </div>
-                  <h5 className="display-5">Uni-Simulator 2021</h5>
+                  <h5 className="display-5 game-title">Uni-Simulator 2021</h5>
                   <Grid  direction="column" style={{width:"100px"}}>
                     <Grid item xs={9} spacing={3} style={{paddingTop:"5px",paddingBottom:"5px"}}>
                       <Paper className={this.classes.paper}>
