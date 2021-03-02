@@ -12,7 +12,7 @@ export default class Login extends React.Component {
         }
     }
 
-    async login() {
+    async login() { 
         if(this.state.error.length === 0) {
             await this.props.set_user_name(this.state.user_name);
         }

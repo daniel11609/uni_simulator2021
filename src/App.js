@@ -50,8 +50,8 @@ export default class App extends React.Component {
                                 <h1 className="display-3 login-header">Uni-Simulator 2021</h1>
                             ) : ( // navigation for game pages
                                 <div>
+                                    <img className="background-image container" src="/background/ground_and_sky.svg" />
                                     <Navbar mainstate={this.state} logout={this.logout} change_page={this.change_page} />
-                                    <img className="background-image" src="/background/ground_and_sky.svg" />
                                 </div>
                                 )
                             }
@@ -69,7 +69,7 @@ export default class App extends React.Component {
             case "login":
                 return <Login set_user_name={this.set_user_name} />;
             case "game":
-                return <Game/>;
+                return <Game rooms={this.state.rooms} />;
             case "shop":
                 return <Shop items={this.state.items} />;
             case "profs":
@@ -113,7 +113,7 @@ export default class App extends React.Component {
     }
 
     set_user_name = async (user_name) => {
-        await this.setState({user_name: user_name, page: "game"});
+        await this.setState({user_name: user_name});
         await localStorage.setItem("user_name", user_name);
 
         // check if this user has been playing on this account before and was logged out:
@@ -133,8 +133,8 @@ export default class App extends React.Component {
             for(let i = 0; i < Config.items.length; i++) {
                 await this.save_to_storage("item_"+(i+1), this.state.items[i]);
             }
-            console.log(this.state.items)
             localStorage.setItem("playing_history_"+user_name, "true")
+            await this.setState({page: "game"})
         }
 
 
@@ -170,7 +170,6 @@ export default class App extends React.Component {
             await items.push(await this.load_from_storage("item_"+(i+1)));
         }
         await this.setState({items: items, rooms: rooms});
-        console.log(this.state.items)
     }
 
 
