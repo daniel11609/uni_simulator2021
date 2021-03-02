@@ -32,6 +32,18 @@ export default class Config {
         {equipment:4, time: 20000},
         {equipment:5, time: 15000},]
 
-    static profs = [{id:1, name:"Herberta, the slave", locked: false, img:"/profs/prof1.svg", pop:0, ex:2, price:69},
-                    {id:2, name:"Herberto, the free man", locked: true, img:"/profs/prof2.svg", pop:0, ex:2, price:999}]
+    static profs = [{id:1, name:"Prof. Lexi", locked: false, img:"/profs/prof1.svg", pop:0, ex:2, price:69},
+                    {id:2, name:"Dr. Caddy", locked: false, img:"/profs/prof2.svg", pop:0, ex:2, price:69},
+                    {id:3, name:"Dr. Cell", locked: false, img:"/profs/prof3.svg", pop:0, ex:2, price:69},
+                    {id:4, name:"Prof. Huntmaster", locked: true, img:"/profs/prof4.svg", pop:0, ex:2, price:69},
+                    {id:5, name:"Dr. Strange", locked: true, img:"/profs/prof5.svg", pop:0, ex:2, price:69},
+                    {id:6, name:"Prof. Beileid", locked: true, img:"/profs/prof6.svg", pop:0, ex:2, price:69},
+                    {id:7, name:"Dr. Handsome", locked: true, img:"/profs/prof7.svg", pop:0, ex:2, price:69},
+                    {id:8, name:"Prof. Natas", locked: true, img:"/profs/prof8.svg", pop:0, ex:2, price:69},
+                    {id:9, name:"Dr. Lele", locked: true, img:"/profs/prof9.svg", pop:0, ex:2, price:69},
+                    {id:10, name:"Dr. Krueger", locked: true, img:"/profs/prof10.svg", pop:0, ex:2, price:69},
+                    {id:11, name:"Dr. Stommer", locked: true, img:"/profs/prof11.svg", pop:0, ex:2, price:69},
+                    {id:12, name:"Prof. Pong", locked: true, img:"/profs/prof12.svg", pop:0, ex:2, price:69},
+                    {id:13, name:"Holy Nicotina", locked: true, img:"/profs/prof13.svg", pop:0, ex:2, price:69},
+                    {id:14, name:"Mc Data", locked: true, img:"/profs/prof14.svg", pop:0, ex:2, price:69}]
 }
