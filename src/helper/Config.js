@@ -23,9 +23,6 @@ export default class Config {
         {id: 1, image: "", image_title: "", title: "Seltener Gegenstand", price: 2, used_in: -1, description: "Das ist ein seltener Gegenstand der durchaus selten sein kann. Seine Anwendung ist recht selten, da seltenerweise nur seltene Ereignisse auftreten."},
         {id: 1, image: "", image_title: "", title: "Seltener Gegenstand", price: 2, used_in: -1, description: "Das ist ein seltener Gegenstand der durchaus selten sein kann. Seine Anwendung ist recht selten, da seltenerweise nur seltene Ereignisse auftreten."},
         {id: 1, image: "", image_title: "", title: "Seltener Gegenstand", price: 2, used_in: -1, description: "Das ist ein seltener Gegenstand der durchaus selten sein kann. Seine Anwendung ist recht selten, da seltenerweise nur seltene Ereignisse auftreten."},
-        {id: 1, image: "", image_title: "", title: "Seltener Gegenstand", price: 2, used_in: -1, description: "Das ist ein seltener Gegenstand der durchaus selten sein kann. Seine Anwendung ist recht selten, da seltenerweise nur seltene Ereignisse auftreten."},
-        {id: 1, image: "", image_title: "", title: "Seltener Gegenstand", price: 2, used_in: -1, description: "Das ist ein seltener Gegenstand der durchaus selten sein kann. Seine Anwendung ist recht selten, da seltenerweise nur seltene Ereignisse auftreten."},
-        {id: 1, image: "", image_title: "", title: "Seltener Gegenstand", price: 2, used_in: -1, description: "Das ist ein seltener Gegenstand der durchaus selten sein kann. Seine Anwendung ist recht selten, da seltenerweise nur seltene Ereignisse auftreten."}
     ]
     //time whats needed with level od equipment in ms
     static equipmentTime = [{equipment:0, time: 60},

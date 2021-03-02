@@ -55,7 +55,6 @@ export default class App extends React.Component {
                                 </div>
                                 )
                             }
-                            <div className="spacer"/>
                             {this.page_handler() /* renders selected pages*/}
                         </div>
                     )}

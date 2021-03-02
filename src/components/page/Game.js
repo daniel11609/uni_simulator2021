@@ -19,6 +19,7 @@ export default class Game extends React.Component {
         return (
             <div className="Game">
                 <img className="background-house container" src="/background/building.svg" />
+                <div className="spacer"/>
                 <div className="flex-grid">
                     <div className="col">
                         <div className="house-spacer-2nd" />
