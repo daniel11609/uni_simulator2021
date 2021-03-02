@@ -18,11 +18,19 @@
     height: 150px;
     position: absolute;
     cursor: pointer;
-    background-color: rgba(69, 69, 69, 0.35);
+    /* background-color: rgba(69, 69, 69, 0.35); */
     transition: transform .2s;
 }
 .unlocked-room:hover {
     transform: scale(1.05);
+}
+
+.unlocked-img{ /*TODO: Fix image size*/
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    cursor: pointer;
+    transition: transform .2s;
 }
 
 .roof-1st {
