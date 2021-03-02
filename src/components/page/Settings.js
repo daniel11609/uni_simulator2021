@@ -27,8 +27,7 @@ export default class Settings extends React.Component {
                         <button type="button" class="btn btn-danger" onClick={()=>{this.deleteAllProfile()}}>Delete all profiles</button>
                     </div>
                     </div>
-                
-                <RoomModal/>
+
             </div>
         );
     }
