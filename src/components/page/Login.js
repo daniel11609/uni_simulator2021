@@ -8,7 +8,7 @@ export default class Login extends React.Component {
         super(props);
         this.state = {
             user_name: "",
-            error: " "
+            error: ""
         }
     }
 
@@ -16,6 +16,7 @@ export default class Login extends React.Component {
         if(this.state.error.length === 0) {
             await this.props.set_user_name(this.state.user_name);
         }
+        window.location.reload();
     }
 
     async name_change(name) {

@@ -1,5 +1,9 @@
 import React from 'react';
-import '../../component-design/Profs/ProfListing.css'
+import '../../component-design/Profs/ProfListing.css';
+
+import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
+
 //<ProfListing prof={{id:0,name:"Herberto", img:"", pop:0,ex:2}}/>
 export default class ProfListing extends React.Component
 {
@@ -17,7 +21,7 @@ export default class ProfListing extends React.Component
         console.log(this.props.prof)
         for (const [idx, val] of this.props.prof.entries()){
             if (val.locked){
-                btnProf = (<button type="button" class="btn btn-primary">Buy for {val.price} Ex</button>)
+                btnProf = (<button type="button" class="btn btn-primary">Buy for {val.price} <RemoveCircleOutlineIcon/></button>)
             }else{
                 btnProf = (<button type="button" class="btn btn-primary">Add to room</button>)
             }
@@ -30,10 +34,10 @@ export default class ProfListing extends React.Component
                                 <h5 class="card-title">{val.name}</h5>
                                 <p class="card-text">
                                     <ul><li>
-                                        Popularity: {val.pop*100}%
+                                        <SupervisedUserCircleIcon/> Popularity: {val.pop*100}%
                                         </li>
                                         <li>
-                                        Exmatriculation: {val.ex*100}%
+                                        <RemoveCircleOutlineIcon/> Exmatriculation: {val.ex*100}%
                                         </li></ul>
                                 </p>
                             </div>
