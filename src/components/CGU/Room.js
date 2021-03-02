@@ -42,8 +42,10 @@ export default class Room extends React.Component {
                         </div>
                     ) : ( // unlocked - roof rooms get special css treatment
                         <div className={"unlocked-room " + (this.props.room.id === 1 ? ("roof-2nd") : (this.props.room.id < 4 ? ("roof-1st") : ("")))}>
+                            {console.log(this.props.room.id, this.props.room.purchased)}
+                            <img className='unlocked-img' src={this.getRoomImage(this.props.room.id, this.props.room.purchased)} alt=""/>
                             <p style={{textAlign: "center"}}>Room {this.props.room.id}</p>
-                            <p style={{marginTop: "30px", textAlign: "center"}}>unlocked</p>
+                            
                         </div>
                     )
                 }
@@ -55,12 +57,15 @@ export default class Room extends React.Component {
     getRoomImage(id=1, purchased=false) {
         //Returns the Image Corresponding to the Room state and id
         let subjects = ['Biology', 'Computer_Science', 'Chemistry', 'Literature', 'Law', 'Maths', 'Mech_Engineering', 'Music', 'Sports', 'Geography', 'Elec_Engineering', 'Art'];
-        let path = 'Rooms/PLACEHOLDER/' + subjects[id-1] + '.svg';
+        let path = 'Rooms/'
+        console.log(path)
         if(purchased){
-            path.replace('PLACEHOLDER','Color');
+            path += 'Color/'
         }else{
-            path.replace('PLACEHOLDER','BW');
+            path += 'BW/'
         }
+        path += subjects[id-1] + '.svg'
+        console.log(path)
         return path
     }
 
