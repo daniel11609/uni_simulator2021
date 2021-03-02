@@ -1,14 +1,12 @@
-# Uni_Simulator 2021
-
-[![DeepSource](https://deepsource.io/gh/daniel11609/uni_simulator2021.svg/?label=resolved+issues&show_trend=true&token=jQLXGMOn8jGODE-Paf760L9P)](https://deepsource.io/gh/daniel11609/uni_simulator2021/?ref=repository-badge)
+# Uni_Simulator 2021 [![DeepSource](https://deepsource.io/gh/daniel11609/uni_simulator2021.svg/?label=active+issues&show_trend=true&token=jQLXGMOn8jGODE-Paf760L9P)](https://deepsource.io/gh/daniel11609/uni_simulator2021/?ref=repository-badge) [![DeepSource](https://deepsource.io/gh/daniel11609/uni_simulator2021.svg/?label=resolved+issues&show_trend=true&token=jQLXGMOn8jGODE-Paf760L9P)](https://deepsource.io/gh/daniel11609/uni_simulator2021/?ref=repository-badge)
 
 
 
-# Getting Started with Create React App
+
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-
 DOWNLOAD NODE.JS (https://nodejs.org/de/download/)
 
 ## Available Scripts
