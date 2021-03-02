@@ -63,18 +63,18 @@ export default class NavBar extends React.Component  {
                   <Grid  direction="column" style={{width:"100px"}}>
                     <Grid item xs={9} spacing={3} style={{paddingTop:"5px",paddingBottom:"5px"}}>
                       <Paper className={this.classes.paper}>
-                        <MoneyDisplay id={"student"} amount={0}> <SupervisedUserCircleIcon></SupervisedUserCircleIcon> </MoneyDisplay>
+                        <MoneyDisplay id={1} name={"students"} amount={0}> <SupervisedUserCircleIcon></SupervisedUserCircleIcon> </MoneyDisplay>
                       </Paper>
                     </Grid>
                     <Grid item xs={9} spacing={3} style={{paddingBottom:"5px"}}>
                       <Paper className={this.classes.paper} >
-                        <MoneyDisplay id={"exmat"} amount={0}> <RemoveCircleOutlineIcon></RemoveCircleOutlineIcon> </MoneyDisplay>
+                        <MoneyDisplay id={2} name ={"exmat"} amount={0}> <RemoveCircleOutlineIcon></RemoveCircleOutlineIcon> </MoneyDisplay>
                       </Paper>
                     </Grid>
 
                     <Grid item xs={9} spacing={3}style={{paddingBottom:"5px"}}>
                       <Paper className={this.classes.paper}>
-                        <MoneyDisplay id={"degree"} amount={0}> <AssignmentTurnedInIcon></AssignmentTurnedInIcon> </MoneyDisplay>
+                        <MoneyDisplay id={3} name ={"degree"} amount={0}> <AssignmentTurnedInIcon></AssignmentTurnedInIcon> </MoneyDisplay>
                       </Paper>
                     </Grid>
                   </Grid>

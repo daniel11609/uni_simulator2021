@@ -1,6 +1,6 @@
 class RoomCalc {
     // returns all stats with the current prof as JSON
-     calcRoom(room, prof)
+     calcRoom(room, prof) 
     {
         let pop;
         let ex;

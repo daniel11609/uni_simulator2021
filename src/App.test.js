@@ -37,7 +37,7 @@ test('test username length limits (too short)', async () => {
   // act: input a username which is too short
   fireEvent.change(userNameInput, { target: { value: '00' } })
 
-  const errorMsg = await screen.findByText(/Your username has to be longer than 3 characters./i);
+  const errorMsg = await screen.findByText(/Your username has to be at least 3 characters long./i);
  
   // assert: check if error msg get shown; check for value of username
   expect(errorMsg).toBeInTheDocument();

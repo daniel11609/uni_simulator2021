@@ -51,7 +51,7 @@ export default class App extends React.Component {
                             ) : ( // navigation for game pages
                                 <div>
                                     <img className="background-image main-container" src="/background/ground_and_sky.svg" />
-                                    <Navbar mainstate={this.state} logout={this.logout} change_page={this.change_page} />
+                                    <Navbar mainstate={this.state} logout={this.logout} change_page={this.change_page}  />
                                 </div>
                                 )
                             }
@@ -124,7 +124,8 @@ export default class App extends React.Component {
             await this.setState({
                 rooms: Config.rooms,
                 items: Config.items,
-                profs: Config.profs
+                profs: Config.profs,
+                currencies: Config.currencies,
             })
             // save initial game state to local storage and bind it to current user_name
             for(let r = 0; r < Config.rooms.length; r++) {
@@ -135,6 +136,9 @@ export default class App extends React.Component {
             }
             for(let i = 0; i < Config.profs.length; i++) {
                 await this.save_to_storage("prof_"+(i+1), this.state.profs[i]);
+            }
+            for(let i = 0; i < Config.currencies.length; i++) {
+                await this.save_to_storage("currencies_"+(i+1), this.state.currencies[i]);
             }
             localStorage.setItem("playing_history_"+user_name, "true")
             await this.setState({page: "game"})
@@ -167,6 +171,7 @@ export default class App extends React.Component {
         let rooms = []
         let items = []
         let profs = []
+        let currencies = []
         for(let r = 0; r < Config.rooms.length; r++) {
             await rooms.push(await this.load_from_storage("room_"+(r+1)));
         }
@@ -176,7 +181,10 @@ export default class App extends React.Component {
         for(let j = 0; j < Config.profs.length; j++) {
             await profs.push(await this.load_from_storage("prof_"+(j+1)));
         }
-        await this.setState({items: items, rooms: rooms, profs: profs});
+        for(let j = 0; j < Config.currencies.length; j++) {
+            await currencies.push(await this.load_from_storage("currencies_"+(j+1)));
+        }
+        await this.setState({items: items, rooms: rooms, profs: profs, currencies: currencies});
     }
 
 
