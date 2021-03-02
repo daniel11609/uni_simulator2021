@@ -37,7 +37,7 @@ export default class Config {
                     {id:3, name:"Dr. Cell", locked: false, img:"/profs/prof3.svg", pop:0, ex:2, price:69},
                     {id:4, name:"Prof. Huntmaster", locked: true, img:"/profs/prof4.svg", pop:0, ex:2, price:69},
                     {id:5, name:"Dr. Strange", locked: true, img:"/profs/prof5.svg", pop:0, ex:2, price:69},
-                    {id:6, name:"Prof. Beileid", locked: true, img:"/profs/prof6.svg", pop:0, ex:2, price:69},
+                    {id:6, name:"Prof. Bilicht", locked: true, img:"/profs/prof6.svg", pop:0, ex:2, price:69},
                     {id:7, name:"Dr. Handsome", locked: true, img:"/profs/prof7.svg", pop:0, ex:2, price:69},
                     {id:8, name:"Prof. Natas", locked: true, img:"/profs/prof8.svg", pop:0, ex:2, price:69},
                     {id:9, name:"Dr. Lele", locked: true, img:"/profs/prof9.svg", pop:0, ex:2, price:69},
