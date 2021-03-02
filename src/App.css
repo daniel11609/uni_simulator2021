@@ -13,6 +13,10 @@
   object-fit: cover;
   top: 0px;
   z-index: -10;
-  padding-left: 0px!important;
-  padding-right: 23px!important;
+}
+
+.main-container {
+  width: 1350px;
+  height: 935px;
+  margin: auto;
 }

@@ -7,69 +7,66 @@ export default class Game extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            rooms: [
-
-            ]
-        }
     }
 
 
     render() {
         return (
             <div className="Game">
-                <img className="background-house container" src="/background/building.svg" />
-                <div className="spacer"/>
-                <div className="flex-grid">
+                <img className="background-house main-container" src="/background/building.svg" />
+                <div className="flex-grid-roof">
+                    <div className="col">
+                        <div className="house-spacer-3rd" />
+                        <Room id="room_2" room={this.props.rooms[1]} />
+                    </div>
+                    <div className="col">
+                        <Room id="room_1" room={this.props.rooms[0]} />
+                    </div>
+                    <div className="col">
+                        <div className="house-spacer-3rd" />
+                        <Room id="room_3" room={this.props.rooms[2]} />
+                    </div>
+                </div>
+                <div className="flex-grid-body">
                     <div className="col">
                         <div className="house-spacer-2nd" />
                         <div className="house-spacer-2nd" />
                         <div className="house-spacer-2nd" />
-                        <img id="room_4" onClick={async (event) => {this.click_locked_room(event)}}
-                             className="room-decoration" src={this.load_room_image(4)} />
+                        <Room id="room_4" room={this.props.rooms[3]} />
                         <div className="house-spacer-1st" />
-                        <img id="room_9" onClick={async (event) => {this.click_locked_room(event)}}
-                             className="room-decoration" src={this.load_room_image(9)} />
+                        <Room id="room_9" room={this.props.rooms[8]} />
                     </div>
                     <div className="col">
                         <div className="house-spacer-2nd" />
                         <div className="house-spacer-2nd" />
                         <div className="house-spacer-2nd" />
-                        <img id="room_5" onClick={async (event) => {this.click_locked_room(event)}}
-                             className="room-decoration" src={this.load_room_image(5)} />
+                        <Room id="room_5" room={this.props.rooms[4]} />
                         <div className="house-spacer-1st" />
-                        <img id="room_10" onClick={async (event) => {this.click_locked_room(event)}}
-                             className="room-decoration" src={this.load_room_image(10)} />
+                        <Room id="room_10" room={this.props.rooms[9]} />
                     </div>
                     <div className="col">
                         <div className="house-spacer-2nd" />
                         <div className="house-spacer-2nd" />
                         <div className="house-spacer-2nd" />
-                        <img id="room_6" onClick={async (event) => {this.click_locked_room(event)}}
-                             className="room-decoration" src={this.load_room_image(6)} />
+                        <Room id="room_6" room={this.props.rooms[5]} />
                         <div className="house-spacer-1st" />
-                        <img id="room_11" onClick={async (event) => {this.click_locked_room(event)}}
-                             className="room-decoration" src={this.load_room_image(11)} />
+                        <Room id="room_11" room={this.props.rooms[10]} />
                     </div>
                     <div className="col">
                         <div className="house-spacer-2nd" />
                         <div className="house-spacer-2nd" />
                         <div className="house-spacer-2nd" />
-                        <img id="room_7" onClick={async (event) => {this.click_locked_room(event)}}
-                             className="room-decoration" src={this.load_room_image(7)} />
+                        <Room id="room_7" room={this.props.rooms[6]} />
                         <div className="house-spacer-1st" />
-                        <img id="room_12" onClick={async (event) => {this.click_locked_room(event)}}
-                             className="room-decoration" src={this.load_room_image(12)} />
+                        <Room id="room_12" room={this.props.rooms[11]} />
                     </div>
                     <div className="col">
                         <div className="house-spacer-2nd" />
                         <div className="house-spacer-2nd" />
                         <div className="house-spacer-2nd" />
-                        <img id="room_8" onClick={async (event) => {this.click_locked_room(event)}}
-                             className="room-decoration" src={this.load_room_image(8)} />
+                        <Room id="room_8" room={this.props.rooms[7]} />
                         <div className="house-spacer-1st" />
-                        <img id="room_13" onClick={async (event) => {this.click_locked_room(event)}}
-                             className="room-decoration" src={this.load_room_image(13)} />
+                        <Room id="room_13" room={this.props.rooms[12]} />
                     </div>
                 </div>
             </div>
@@ -82,12 +79,6 @@ export default class Game extends React.Component {
         alert("You did not unlock room "+event.currentTarget.getAttribute('id').replace("room_", "")+" yet!")
     }
 
-    load_room_image(room_id) {
-        console.log(this.props.rooms)
-        if(this.props.rooms[room_id-1].locked) {
-            return "/misc/locked_room.svg"
-        }
-    }
 
 
 }
