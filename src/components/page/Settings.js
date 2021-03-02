@@ -1,6 +1,7 @@
 import React from "react";
 
 import '../../component-design/page/Settings.css';
+import RoomModal from "../CGU/parts/RoomModal";
 
 export default class Settings extends React.Component {
 
@@ -27,7 +28,7 @@ export default class Settings extends React.Component {
                     </div>
                     </div>
                 
-                
+                <RoomModal/>
             </div>
         );
     }
