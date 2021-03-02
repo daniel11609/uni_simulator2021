@@ -1,81 +1,49 @@
 import React from 'react';
 import '../../component-design/CGU/Room.css';
 
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import LockIcon from '@material-ui/icons/Lock';
 import Config from "../../helper/Config.js"
-import RoomCalc from "../../helper/RoomCalc";
+
+
 export default class Room extends React.Component {
 
     constructor(props) {
         super(props);
+        // room: {id: 13, locked: true, name: "da hood", "equipment": 0, capacity: 20, prof: -1}
         this.state = {
-            unlocked: true,
-            inventory: 0,
-            capacity: 20,
-            prof: -1,
             reward: "",
             background: "",
-            id:0,
-            running:false,
-            runningTime:0,
-            progress:0,
-            progressUpdate:0,
+            running: false,
+            runningTime: 0,
+            progress: 0,
+            progressUpdate: 0,
         }
     }
 
-    // TODO for room calc query if prof is inside else give 0.5 0.5 to room calc
-
-    componentDidMount(){
-        if((this.state.unlocked===true) && (this.state.prof>-1))
-        {
+    componentDidMount() {
+        if((!this.props.room.locked) && (this.props.room.prof > -1)) {
             this.runCGU();
         }
     }
-    startTimer() {
-        this.ticker = setInterval(()=>this.tick(),1000);
-    }
+
     componentWillUnmount() {
         clearInterval(this.ticker);
     }
-    tick() {
-        let timeNeeded= this.state.runningTime;
-        let progress= this.state.progress
-        this.setState({runningTime:timeNeeded-1,
-                        progress:progress+this.state.progressUpdate})
-        if((timeNeeded-1)==0)
-        {
-            //RoomCalc.calcRoom();
-              // TODO: update money
-              
-            if(this.state.prof==-1){
-                this.setState({running:false,progress:0,progressUpdate:0})
-                clearInterval(this.ticker);
-                
-                
-            }
-        }
-        
 
-    }
+
+
     render() {
         return(
             <div className='Room' >
                 {
-                    this.state.unlocked ? (  // unlocked
-                        <div>
-                            {this.get_media_card()}
+                    this.props.room.locked ? (  // locked
+                        <div className="locked-room">
+                            <img className="locked-room locked-img" src="/misc/locked_room.svg" />
+                            <p style={{textAlign: "center"}}>Room {this.props.room.id}</p>
                         </div>
-                    ) : ( // locked
-                        <div>
-                            <LockIcon/>
+                    ) : ( // unlocked - roof rooms get special css treatment
+                        <div className={"unlocked-room " + (this.props.room.id === 1 ? ("roof-2nd") : (this.props.room.id < 4 ? ("roof-1st") : ("")))}>
+                            <p style={{textAlign: "center"}}>Room {this.props.room.id}</p>
+                            <p style={{marginTop: "30px", textAlign: "center"}}>unlocked</p>
                         </div>
                     )
                 }
@@ -83,67 +51,42 @@ export default class Room extends React.Component {
 
         );
     }
-    runCGU()
-    {
-        
+
+
+    startTimer() {
+        this.ticker = setInterval(()=>this.tick(),1000);
+    }
+
+    tick() {
+        let timeNeeded= this.state.runningTime;
+        let progress= this.state.progress
+        this.setState({runningTime: timeNeeded-1, progress: progress+this.state.progressUpdate})
+        if((timeNeeded-1) === 0) {
+            //RoomCalc.calcRoom();
+            // TODO: update money
+
+            if(this.state.prof === -1){
+                this.setState({running: false, progress: 0, progressUpdate: 0})
+                clearInterval(this.ticker);
+            }
+        }
+    }
+
+    runCGU() {
         this.setState({running:true});
-        let timeNeeded = Config.equipmentTime[this.state.inventory].time;
-        this.setState({progressUpdate:Number(100/timeNeeded)});
-        this.setState({runningTime:timeNeeded})
+        let timeNeeded = Config.equipmentTime[this.state.room.equipment].time;
+        this.setState({progressUpdate: Number(100/timeNeeded)});
+        this.setState({runningTime: timeNeeded})
         this.startTimer();
         alert(timeNeeded)
-
     }
 
-    doUpdate(){
+    doUpdate() {
         //do update enough money ? -> update-> write in local storage  
     }
-    get_media_card() {
-        const classes = makeStyles({
-            root: {
-                maxWidth: 345,
-            },
-            media: {
-                height: 140,
-            },
-        });
 
-        return (
-            <Card className={classes.root}>
-                <CardActionArea>
-                    <CardMedia
-                        className={classes.media}
-                        image="/static/images/cards/contemplative-reptile.jpg"
-                        title="Contemplative Reptile"
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            Lizard
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                            across all continents except Antarctica
-                        </Typography>
-                        <Typography>
-                            <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style={{width: this.state.progress+"%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
-              
-                <CardActions>
-                    {this.state.prof==-1?
-                       ( <Button size="small" color="primary" onClick={()=>{this.runCGU()}}>
-                        Run
-                    </Button>):
-                    (<div></div>)//when prof , render progress bar
-                    }
-                    <Button size="small" color="primary" onClick={()=>this.doUpdate()}>
-                        Upgrade
-                    </Button>
-                </CardActions>
-            </Card>
-        );
-    }
+
+    // <div class="progress-bar bg-success" role="progressbar" style={{width: this.state.progress+"%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+
 }
+

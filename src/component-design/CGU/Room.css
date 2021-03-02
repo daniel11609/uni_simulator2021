@@ -1,12 +1,35 @@
-.Room{
-    display: float;
-    justify-content: space-around;
-    align-items: center;
-    width:auto;
-    padding:25vh;
-    border: solid;
+.Room {
+
 }
-.RoomBack{
-    height: 30%;
-    width: 30%;
+
+.locked-room {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    cursor: pointer;
+    transition: transform .2s;
+}
+.locked-room:hover {
+    transform: scale(1.05);
+}
+
+.unlocked-room {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    cursor: pointer;
+    background-color: rgba(69, 69, 69, 0.35);
+    transition: transform .2s;
+}
+.unlocked-room:hover {
+    transform: scale(1.05);
+}
+
+.roof-1st {
+    width: 190px;
+    height: 130px;
+}
+.roof-2nd {
+    height: 106px;
+    width: 180px;
 }

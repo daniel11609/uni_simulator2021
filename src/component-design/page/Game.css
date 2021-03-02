@@ -3,27 +3,38 @@
 }
 
 .background-house {
-    position: fixed;
+    position: absolute;
     top: 40px;
     z-index: -9;
-    width: 300%;
-    height: 180%;
+    height: 896px;
+    overflow: hidden;
 }
 
-.flex-grid {
+.flex-grid-roof {
     display: flex;
-    width: 57%;
+    width: 32%;
     margin: auto;
-    padding-left: 35px;
+    padding-right: 30px;
+    padding-top: 18px;
+}
+
+.flex-grid-body {
+    display: flex;
+    width: 74%;
+    margin: auto;
+    padding-left: 50px;
 }
 .col {
     flex: 1;
 }
+.house-spacer-3rd {
+    height: 145px
+}
 .house-spacer-2nd {
-    height: 71px
+    height: 68px
 }
 .house-spacer-1st {
-    height: 195px
+    height: 270px
 }
 .room-decoration {
     position: fixed;

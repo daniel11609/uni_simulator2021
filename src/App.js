@@ -39,7 +39,7 @@ export default class App extends React.Component {
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
                       integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
                       crossOrigin="anonymous"/>
-                <div className="container">
+                <div className="main-container">
                     {this.state.loading ? ( // gets shown before game state is loaded
                         <div>
                             Loading...
@@ -50,7 +50,7 @@ export default class App extends React.Component {
                                 <h1 className="display-3 login-header">Uni-Simulator 2021</h1>
                             ) : ( // navigation for game pages
                                 <div>
-                                    <img className="background-image container" src="/background/ground_and_sky.svg" />
+                                    <img className="background-image main-container" src="/background/ground_and_sky.svg" />
                                     <Navbar mainstate={this.state} logout={this.logout} change_page={this.change_page} />
                                 </div>
                                 )
