@@ -41,14 +41,14 @@ class RoomCalc {
     }
 
     calcEarningOfflineTime(room, prof){
-        roomstats = this.calcRoom(room, prof);
-        exit_time = Date.parse(localStorage.getItem('exit_time'));
-        cur_time = Date.now();
-        diff = cur_time - exit_time;
-        roomData = localStorage.getItem("room_"+room.id);
-        roomRuntime = Config.equipmentTime[roomData.equipment].time;
+        let roomstats = this.calcRoom(room, prof);
+        let exit_time = Date.parse(localStorage.getItem('exit_time'));
+        let cur_time = Date.now();
+        let diff = cur_time - exit_time;
+        let roomData = localStorage.getItem("room_"+room.id);
+        let roomRuntime = Config.equipmentTime[roomData.equipment].time;
 
-        timesRun = floor(diff / roomRuntime);
+        let timesRun = floor(diff / roomRuntime);
 
         let studentsEarned = timesRun * roomstats.roomStats.studentAmount;
         let exmatEarned = timesRun * roomstats.roomStats.exmatriculations;
