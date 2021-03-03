@@ -38,14 +38,16 @@ export default class Room extends React.Component {
                     this.props.room.locked ? (  // locked
                         <div className="locked-room">
                             <img className="locked-room locked-img" src="/misc/locked_room.svg" />
-                            <p style={{textAlign: "center", fontWeight: "500"}}>Room {this.props.room.id}</p>
+                            <p style={{textAlign: "center", fontWeight: "500"}}>
+                                {this.props.room.name}
+                                </p>
                         </div>
                     ) : ( // unlocked - roof rooms get special css treatment
                         <div id={this.props.room.id} className={"unlocked-room " + (this.props.room.id === 1 ? ("roof-2nd") : (this.props.room.id < 4 ? ("roof-1st") : ("")))}
                         onClick={event => {this.onRoomClick(event); }}>
                             <img className='unlocked-img' src={this.getRoomImage(this.props.room.id, this.props.room.purchased)} alt=""/>
                             <p style={{textAlign: "center", fontWeight: "500"}}>
-                                Room {this.props.room.id}
+                                {this.props.room.name}
                                 <span style={{color: "RGB(3, 223, 252)", fontWeight: "700"}}>{this.state.progress > 0 ? (" - "+Math.round(this.state.progress)+"%") : ("")}</span>
                             </p>
                             <RoomModal open={this.state.modal_open} run={this.runCGU} progress={this.state.progress}
