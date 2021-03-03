@@ -1,6 +1,6 @@
 import { PowerOff } from "@material-ui/icons";
 
-class RoomCalc {
+export default class RoomCalc {
     // returns all stats with the current prof as JSON
      calcRoom(room, prof) 
     {
@@ -40,7 +40,7 @@ class RoomCalc {
         }}       
     }
 
-    calcEarningOfflineTime(room, prof){
+    /*calcEarningOfflineTime(room, prof){
         let roomstats = this.calcRoom(room, prof);
         let exit_time = Date.parse(localStorage.getItem(localStorage.getItem('user_name') + '_exit_time'));
         let cur_time = Date.now();
@@ -61,5 +61,5 @@ class RoomCalc {
                 degrees: degEarned
             }
         }
-    }
+    }*/
 }

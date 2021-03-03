@@ -4,7 +4,7 @@ import '../../component-design/CGU/Room.css';
 import Config from "../../helper/Config.js"
 import RoomModal from "./parts/RoomModal";
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
-
+import RoomCalc from "../../helper/RoomCalc"
 export default class Room extends React.Component {
 
     constructor(props) {
@@ -123,27 +123,42 @@ export default class Room extends React.Component {
         let timeNeeded= this.state.runningTime;
         let progress= this.state.progress
         this.setState({runningTime: timeNeeded-1, progress: progress+this.state.progressUpdate})
-        if((timeNeeded-1) === 0) {
-            //RoomCalc.calcRoom();
+        if(((timeNeeded-1) === 0)||(progress >= 100) ){
+           
+            let room = {id: this.props.room.id,capacity:this.props.room.capacity};
+            let prof= null;
+            if(this.props.room.prof>-1)
+            {
+                let profstats = Config.profs[this.props.room.prof-1];
+                console.log(profstats)
+                 prof = {id : profstats.id, pop: profstats.pop, ex: profstats.ex}
+            }
+            let stats = this.calcRoom(room,prof);
+            console.log(stats);
+            console.log(prof);
             // TODO: update money
+            let user_name = localStorage.getItem("user_name");
+            let student = JSON.parse(localStorage.getItem(user_name+"_currencies_1"));
+            let exmat = JSON.parse(localStorage.getItem(user_name+"_currencies_2"));
+            let degree = JSON.parse(localStorage.getItem(user_name+"_currencies_3"));
+            student.amount= student.amount + stats.studentAmount;
+            exmat.amount = exmat.amount + stats.exmatriculations;
+            degree.amount = degree.amount + stats.degrees;
 
-            if(this.state.prof === -1){
+            localStorage.setItem(user_name+"_currencies_1",JSON.stringify(student));
+            localStorage.setItem(user_name+"_currencies_2",JSON.stringify(exmat));
+            localStorage.setItem(user_name+"_currencies_3",JSON.stringify(degree));
+
+            if(this.props.room.prof === -1){
                 this.setState({running: false, progress: 0, progressUpdate: 0})
                 clearInterval(this.ticker);
             }
-            if(this.state.prof_id>-1){
-               
+            if(this.props.room.prof>-1){
+                this.setState({running: false, progress: 0, progressUpdate: 0})
                 this.runCGU();
             }
         }
-        if(progress >= 100){
-            this.setState({running: false, progress: 0, progressUpdate: 0})
-            clearInterval(this.ticker);
-            if(this.state.prof_id>-1){
-                
-                this.runCGU();
-            }
-        }
+        
         
     }
 
@@ -158,7 +173,43 @@ export default class Room extends React.Component {
     doUpdate() {
         //do update enough money ? -> update-> write in local storage  
     }
-
+    calcRoom(room, prof) 
+    {
+        /**
+         * room:{ id:0,
+         * capacity:20
+         * }
+         * prof:{
+         * id:0,
+         * popularity:0.5,
+         * exmatric:0.5
+         * }
+         * 
+         */
+        let pop;
+        let ex;
+        if(prof===null)
+        {
+             pop = 0.5;
+             ex = 0.5; 
+        }
+        else
+        {
+             pop = prof.pop;
+             ex = prof.ex;
+        }
+        let capacity = room.capacity;
+        let students = Math.round(pop*capacity+0.5);
+        let exmatric = Math.round(students*ex-0.5); 
+        let degrees = students-exmatric;
+        return {
+            id: room.id,
+            capacity: capacity,
+            studentAmount: students,
+            exmatriculations: exmatric,
+            degrees: degrees,
+        }       
+    }
 
     // <div class="progress-bar bg-success" role="progressbar" style={{width: this.state.progress+"%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 
