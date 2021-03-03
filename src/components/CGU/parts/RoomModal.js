@@ -10,6 +10,28 @@ export default class RoomModal extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            free_profs: [], // prof_id
+            prof_name: null,
+            prof_img: null,
+            selected_prof: -1
+        }
+    }
+
+    componentDidMount() {
+        this.setState({selected_prof: -1})
+        const prof_locations = this.props.get_prof_locations(); // returns array of tuples (prof_id, room_id)
+        let free_profs = [];
+        for(let i = 0; i < prof_locations.length; i++) {
+            if(prof_locations[i][1] <= 0) {
+                free_profs.push(prof_locations[i][0]);
+            }
+        }
+        this.setState({free_profs: free_profs})
+        if(this.props.room.prof > 0) {
+            const prof_data = this.get_prof_by_id(this.props.room.prof);
+            this.setState({prof_name: prof_data[0], prof_img: prof_data[1]})
+        }
     }
 
 
@@ -31,12 +53,11 @@ export default class RoomModal extends React.Component {
                     <Fade in={this.props.open}>
                         <div className="room-modal-content">
                             <h2 id="transition-modal-title">Room {this.props.room.id}</h2>
-                            <p id="transition-modal-description">Hier könnte Ihre Werbung stehen!</p>
-                            <div className="progress-bar bg-success" role="progressbar"
-                                 style={{width: this.props.progress + "%", marginBottom: "15px"}} aria-valuenow="25" aria-valuemin="0"
-                                 aria-valuemax="100">{Math.round(this.props.progress)} %</div>
-                            <button className={"btn btn-primary "+(this.props.progress > 0 && this.props.progress < 100 ? ("disabled") : (""))}
-                                    onClick={() => {this.props.run();}}>Run</button>
+                            {this.state.prof_name ? (
+                                <div>{this.render_prof()}</div>
+                            ) : (
+                                <div>{this.render_empty()}</div>
+                            )}
                         </div>
                     </Fade>
                 </Modal>
@@ -45,6 +66,65 @@ export default class RoomModal extends React.Component {
     }
 
 
+    render_empty() {
+        return <div>
+            <p>Here could be some room data</p>
+            <div style={{display: "flex"}}>
+                <select className="form-select" aria-label="Default select example" onChange={(event => {this.setState({selected_prof: event.target.value})})}>
+                    <option value="" selected disabled hidden>Choose here</option>
+                    {this.render_prof_options()}
+                </select>
+                <button className="btn btn-primary" onClick={(() => {this.add_prof()})}>Add Prof</button>
+            </div>
+        </div>
+    }
+
+    add_prof() {
+        if(this.state.selected_prof === -1) {
+            alert("You have to select a professor.");
+            return;
+        }
+        let new_room = this.props.room;
+        new_room.prof = this.state.selected_prof;
+        this.props.edit_room(this.props.room.id, new_room);
+        this.props.close_modal();
+    }
+
+    remove_prof() {
+        let new_room = this.props.room;
+        new_room.prof = -1;
+        this.props.edit_room(this.props.room.id, new_room);
+        this.props.close_modal();
+    }
+
+    render_prof() {
+        return <div>
+            <p id="transition-modal-description">{this.state.prof_name ? ("Professor "+this.state.prof_name) : ("")}</p>
+            <div className="progress-bar bg-success" role="progressbar"
+                 style={{width: this.props.progress + "%", marginBottom: "15px"}} aria-valuenow="25" aria-valuemin="0"
+                 aria-valuemax="100">{Math.round(this.props.progress)} %</div>
+            <div>
+                <button className={"btn btn-success "+(this.props.progress > 0 && this.props.progress < 100 ? ("disabled") : (""))}
+                        onClick={() => {this.props.run()}}>Run</button>
+                <button className="btn btn-danger" style={{marginLeft: "20px"}} onClick={() => {this.remove_prof()}}>Remove Prof</button>
+            </div>
+        </div>
+    }
+
+    render_prof_options() {
+        return this.state.free_profs.map((data, id) => {
+            return <option key={id} value={data}>{this.get_prof_by_id(data)[0]}</option>
+        })
+    }
+
+
+    get_prof_by_id(id) { // returns tuple (name, image)
+        for(let i = 0; i < this.props.profs.length; i++) {
+            if(this.props.profs[i].id === Number(id)) {
+                return [this.props.profs[i].name, this.props.profs[i].img]
+            }
+        }
+    }
 
 
 

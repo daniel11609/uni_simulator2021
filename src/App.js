@@ -68,7 +68,7 @@ export default class App extends React.Component {
             case "login":
                 return <Login set_user_name={this.set_user_name} />;
             case "game":
-                return <Game rooms={this.state.rooms} />;
+                return <Game rooms={this.state.rooms} profs={this.state.profs} edit_room={this.edit_room} />;
             case "shop":
                 return <Shop items={this.state.items} profs={this.state.profs}/>;
             case "profs":
@@ -96,6 +96,16 @@ export default class App extends React.Component {
         if(this.state.page !== "login") {
             this.save_to_storage("exit_time", Date.now());
         }
+    }
+
+
+    edit_room = (id, room) => {
+        let new_rooms = this.state.rooms;
+        console.log(new_rooms)
+        new_rooms[Number(id)-1] = room;
+        console.log(new_rooms)
+        this.setState({rooms: new_rooms});
+        this.save_to_storage("room_"+id, room);
     }
 
 

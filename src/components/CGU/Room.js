@@ -22,9 +22,7 @@ export default class Room extends React.Component {
     }
 
     componentDidMount() {
-        if((!this.props.room.locked) && (this.props.room.prof > -1)) {
-            this.runCGU();
-        }
+
     }
 
     componentWillUnmount() {
@@ -51,7 +49,8 @@ export default class Room extends React.Component {
                                 <span style={{color: "RGB(3, 223, 252)", fontWeight: "700"}}>{this.state.progress > 0 ? (" - "+Math.round(this.state.progress)+"%") : ("")}</span>
                             </p>
                             <RoomModal open={this.state.modal_open} run={this.runCGU} progress={this.state.progress}
-                                       close_modal={this.close_modal} room={this.props.room} />
+                                       close_modal={this.close_modal} room={this.props.room} profs={this.props.profs}
+                                       edit_room={this.props.edit_room} get_prof_locations={this.props.get_prof_locations}/>
                         </div>
                     )
                 }
