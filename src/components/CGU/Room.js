@@ -29,6 +29,10 @@ export default class Room extends React.Component {
         clearInterval(this.ticker);
     }
 
+    setProf = async(prof_id) =>
+    {
+        this.setState({prof_id:prof_id})
+    }
 
 
     render() {
@@ -50,7 +54,7 @@ export default class Room extends React.Component {
                                 {this.props.room.name}
                                 <span style={{color: "RGB(3, 223, 252)", fontWeight: "700"}}>{this.state.progress > 0 ? (" - "+Math.round(this.state.progress)+"%") : ("")}</span>
                             </p>
-                            <RoomModal open={this.state.modal_open} run={this.runCGU} progress={this.state.progress}
+                            <RoomModal setProf={this.setProf} open={this.state.modal_open} run={this.runCGU} progress={this.state.progress}
                                        close_modal={this.close_modal} room={this.props.room} profs={this.props.profs}
                                        edit_room={this.props.edit_room} get_prof_locations={this.props.get_prof_locations}/>
                         </div>
@@ -101,11 +105,20 @@ export default class Room extends React.Component {
                 this.setState({running: false, progress: 0, progressUpdate: 0})
                 clearInterval(this.ticker);
             }
+            if(this.state.prof_id>-1){
+               
+                this.runCGU();
+            }
         }
         if(progress >= 100){
             this.setState({running: false, progress: 0, progressUpdate: 0})
             clearInterval(this.ticker);
+            if(this.state.prof_id>-1){
+                
+                this.runCGU();
+            }
         }
+        
     }
 
     runCGU = () => {
