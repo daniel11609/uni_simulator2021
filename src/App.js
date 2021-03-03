@@ -20,12 +20,14 @@ export default class App extends React.Component {
     componentDidMount() {
         // async game state loader:
         // load existing or generate new game state --> asynchronous, change loading to false when done so all gathered data can be rendered, else null pointer exceptions
-        this.game_state_loader().then(() => {
-            this.setState({
-                loading: false,
-                exit_time_update_process: setInterval(()=>this.exit_time_updater(),1000)
+        if(this.state.loading) {
+            this.game_state_loader().then(() => {
+                this.setState({
+                    loading: false,
+                    exit_time_update_process: setInterval(() => this.exit_time_updater(), 1000)
+                })
             })
-        })
+        }
     }
 
     componentWillUnmount() {
@@ -99,12 +101,10 @@ export default class App extends React.Component {
     }
 
 
-    edit_room = (id, room) => {
+    edit_room = async (id, room) => {
         let new_rooms = this.state.rooms;
-        console.log(new_rooms)
         new_rooms[Number(id)-1] = room;
-        console.log(new_rooms)
-        this.setState({rooms: new_rooms});
+        await this.setState({rooms: new_rooms});
         this.save_to_storage("room_"+id, room);
     }
 

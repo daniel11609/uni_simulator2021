@@ -19,7 +19,7 @@ export default class RoomModal extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({selected_prof: -1})
+        this.setState({selected_prof: -1, prof_name: null, prof_img: null, free_profs: []})
         const prof_locations = this.props.get_prof_locations(); // returns array of tuples (prof_id, room_id)
         let free_profs = [];
         for(let i = 0; i < prof_locations.length; i++) {
@@ -68,45 +68,51 @@ export default class RoomModal extends React.Component {
 
     render_empty() {
         return <div>
-            <p>Here could be some room data</p>
-            <div style={{display: "flex"}}>
+            <p>Equipment: {this.props.room.equipment}<br/> Capacity: {this.props.room.capacity}</p>
+            <p>This room is missing a professor.</p>
+            <div style={{display: "flex", marginBottom: "20px"}}>
                 <select className="form-select" aria-label="Default select example" onChange={(event => {this.setState({selected_prof: event.target.value})})}>
-                    <option value="" selected disabled hidden>Choose here</option>
+                    <option value="" selected disabled hidden>Choose Prof</option>
                     {this.render_prof_options()}
                 </select>
-                <button className="btn btn-primary" onClick={(() => {this.add_prof()})}>Add Prof</button>
+                <button className="btn btn-primary" onClick={(async () => {await this.add_prof()})}>Add Prof</button>
             </div>
+            <div className="progress-bar bg-success" role="progressbar"
+                 style={{width: this.props.progress + "%", marginBottom: "15px"}} aria-valuenow="25" aria-valuemin="0"
+                 aria-valuemax="100">{Math.round(this.props.progress)} %</div>
+            <button className="btn btn-light" onClick={() => {this.props.run()}}>Run Without</button>
         </div>
     }
 
-    add_prof() {
+    async add_prof() {
         if(this.state.selected_prof === -1) {
             alert("You have to select a professor.");
             return;
         }
         let new_room = this.props.room;
         new_room.prof = this.state.selected_prof;
-        this.props.edit_room(this.props.room.id, new_room);
-        this.props.close_modal();
+        await this.props.edit_room(this.props.room.id, new_room);
+        this.componentDidMount()
     }
 
-    remove_prof() {
+    async remove_prof() {
         let new_room = this.props.room;
         new_room.prof = -1;
-        this.props.edit_room(this.props.room.id, new_room);
-        this.props.close_modal();
+        await this.props.edit_room(this.props.room.id, new_room);
+        await this.componentDidMount()
     }
 
     render_prof() {
         return <div>
-            <p id="transition-modal-description">{this.state.prof_name ? ("Professor "+this.state.prof_name) : ("")}</p>
+            <p>Equipment: {this.props.room.equipment}<br/>Capacity: {this.props.room.capacity}<br/>Professor: {this.state.prof_name}</p>
+            <img className="prof-img" src={this.state.prof_img} />
             <div className="progress-bar bg-success" role="progressbar"
                  style={{width: this.props.progress + "%", marginBottom: "15px"}} aria-valuenow="25" aria-valuemin="0"
                  aria-valuemax="100">{Math.round(this.props.progress)} %</div>
             <div>
-                <button className={"btn btn-success "+(this.props.progress > 0 && this.props.progress < 100 ? ("disabled") : (""))}
+                <button className={"btn btn-light "+(this.props.progress > 0 && this.props.progress < 100 ? ("disabled") : (""))}
                         onClick={() => {this.props.run()}}>Run</button>
-                <button className="btn btn-danger" style={{marginLeft: "20px"}} onClick={() => {this.remove_prof()}}>Remove Prof</button>
+                <button className="btn btn-danger" style={{marginLeft: "20px"}} onClick={async () => {await this.remove_prof()}}>Remove Prof</button>
             </div>
         </div>
     }
