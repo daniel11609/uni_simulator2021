@@ -62,9 +62,14 @@ export default class Room extends React.Component {
                     this.props.room.locked ? (  // locked
                         <div className="locked-room" onClick={()=>{this.buyRoom()}}>
                             <img className="locked-room locked-img" src="/misc/locked_room.svg" />
-                            <p style={{textAlign: "center", fontWeight: "500"}}>
-                                {this.props.room.name+" "} <span class="badge bg-secondary">{this.props.room.price} <AssignmentTurnedInIcon></AssignmentTurnedInIcon></span>
-                                </p>
+                            <div style={{position: "absolute"}}>
+                                <div style={{fontWeight: "700"}}>
+                                    {this.props.room.name}
+                                </div>
+                                <div>
+                                    <span className="badge bg-secondary">{this.props.room.price} <AssignmentTurnedInIcon/></span>
+                                </div>
+                            </div>
                         </div>
                     ) : ( // unlocked - roof rooms get special css treatment
                         <div id={this.props.room.id} className={"unlocked-room " + (this.props.room.id === 1 ? ("roof-2nd") : (this.props.room.id < 4 ? ("roof-1st") : ("")))}
