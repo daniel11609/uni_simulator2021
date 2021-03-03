@@ -21,7 +21,7 @@ export default class ProfListing extends React.Component
         console.log(this.props.prof)
         for (const [idx, val] of this.props.prof.entries()){
             if (val.locked){
-                btnProf = (<button type="button" class="btn btn-primary">Buy for {val.price} <RemoveCircleOutlineIcon/></button>)
+                btnProf = (<button type="button" class="btn btn-primary" onClick={()=>{this.buyProf(val.price, idx)}}>Buy for {val.price} <RemoveCircleOutlineIcon/></button>)
             }else{
                 btnProf = (<button type="button" class="btn btn-primary">Add to room</button>)
             }
@@ -55,6 +55,11 @@ export default class ProfListing extends React.Component
             <div className='ProfList'>{reshtml}</div>
             
         );
+    }
+    buyProf(price,id)
+    {
+        alert(price+" "+id)
+        
     }
 
 
