@@ -52,7 +52,9 @@ export default class RoomModal extends React.Component {
                 >
                     <Fade in={this.props.open}>
                         <div className="room-modal-content">
-                            <h2 id="transition-modal-title">Room {this.props.room.id}</h2>
+                            <h2 id="transition-modal-title">
+                                {this.props.room.name}
+                                </h2>
                             {this.state.prof_name ? (
                                 <div>{this.render_prof()}</div>
                             ) : (
