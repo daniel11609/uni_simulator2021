@@ -52,7 +52,8 @@ export default class Room extends React.Component {
                             </p>
                             <RoomModal open={this.state.modal_open} run={this.runCGU} progress={this.state.progress}
                                        close_modal={this.close_modal} room={this.props.room} profs={this.props.profs}
-                                       edit_room={this.props.edit_room} get_prof_locations={this.props.get_prof_locations}/>
+                                       edit_room={this.props.edit_room} get_prof_locations={this.props.get_prof_locations}
+                                       save_to_storage={this.props.save_to_storage} load_from_storage={this.props.load_from_storage}/>
                         </div>
                     )
                 }

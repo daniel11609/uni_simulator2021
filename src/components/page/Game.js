@@ -17,14 +17,17 @@ export default class Game extends React.Component {
                 <div className="flex-grid-roof">
                     <div className="col">
                         <div className="house-spacer-3rd" />
-                        <Room id="room_2" room={this.props.rooms[1]} profs={this.props.profs} edit_room={this.props.edit_room} get_prof_locations={this.get_prof_locations} />
+                        <Room id="room_2" room={this.props.rooms[1]} profs={this.props.profs} edit_room={this.props.edit_room}
+                              get_prof_locations={this.get_prof_locations} save_to_storage={this.props.save_to_storage} load_from_storage={this.props.load_from_storage} />
                     </div>
                     <div className="col">
-                        <Room id="room_1" room={this.props.rooms[0]} profs={this.props.profs} edit_room={this.props.edit_room} get_prof_locations={this.get_prof_locations} />
+                        <Room id="room_1" room={this.props.rooms[0]} profs={this.props.profs} edit_room={this.props.edit_room}
+                              get_prof_locations={this.get_prof_locations} save_to_storage={this.props.save_to_storage} load_from_storage={this.props.load_from_storage}/>
                     </div>
                     <div className="col">
                         <div className="house-spacer-3rd" />
-                        <Room id="room_3" room={this.props.rooms[2]} profs={this.props.profs} edit_room={this.props.edit_room} get_prof_locations={this.get_prof_locations} />
+                        <Room id="room_3" room={this.props.rooms[2]} profs={this.props.profs} edit_room={this.props.edit_room}
+                              get_prof_locations={this.get_prof_locations} save_to_storage={this.props.save_to_storage} load_from_storage={this.props.load_from_storage}/>
                     </div>
                 </div>
                 <div className="flex-grid-body">
@@ -32,41 +35,51 @@ export default class Game extends React.Component {
                         <div className="house-spacer-2nd" />
                         <div className="house-spacer-2nd" />
                         <div className="house-spacer-2nd" />
-                        <Room id="room_4" room={this.props.rooms[3]} profs={this.props.profs} edit_room={this.props.edit_room} get_prof_locations={this.get_prof_locations} />
+                        <Room id="room_4" room={this.props.rooms[3]} profs={this.props.profs} edit_room={this.props.edit_room}
+                              get_prof_locations={this.get_prof_locations} save_to_storage={this.props.save_to_storage} load_from_storage={this.props.load_from_storage}/>
                         <div className="house-spacer-1st" />
-                        <Room id="room_9" room={this.props.rooms[8]} profs={this.props.profs} edit_room={this.props.edit_room} get_prof_locations={this.get_prof_locations} />
+                        <Room id="room_9" room={this.props.rooms[8]} profs={this.props.profs} edit_room={this.props.edit_room}
+                              get_prof_locations={this.get_prof_locations} save_to_storage={this.props.save_to_storage} load_from_storage={this.props.load_from_storage}/>
                     </div>
                     <div className="col">
                         <div className="house-spacer-2nd" />
                         <div className="house-spacer-2nd" />
                         <div className="house-spacer-2nd" />
-                        <Room id="room_5" room={this.props.rooms[4]} profs={this.props.profs} edit_room={this.props.edit_room} get_prof_locations={this.get_prof_locations} />
+                        <Room id="room_5" room={this.props.rooms[4]} profs={this.props.profs} edit_room={this.props.edit_room}
+                              get_prof_locations={this.get_prof_locations} save_to_storage={this.props.save_to_storage} load_from_storage={this.props.load_from_storage}/>
                         <div className="house-spacer-1st" />
-                        <Room id="room_10" room={this.props.rooms[9]} profs={this.props.profs} edit_room={this.props.edit_room} get_prof_locations={this.get_prof_locations} />
+                        <Room id="room_10" room={this.props.rooms[9]} profs={this.props.profs} edit_room={this.props.edit_room}
+                              get_prof_locations={this.get_prof_locations} save_to_storage={this.props.save_to_storage} load_from_storage={this.props.load_from_storage}/>
                     </div>
                     <div className="col">
                         <div className="house-spacer-2nd" />
                         <div className="house-spacer-2nd" />
                         <div className="house-spacer-2nd" />
-                        <Room id="room_6" room={this.props.rooms[5]} profs={this.props.profs} edit_room={this.props.edit_room} get_prof_locations={this.get_prof_locations} />
+                        <Room id="room_6" room={this.props.rooms[5]} profs={this.props.profs} edit_room={this.props.edit_room}
+                              get_prof_locations={this.get_prof_locations} save_to_storage={this.props.save_to_storage} load_from_storage={this.props.load_from_storage}/>
                         <div className="house-spacer-1st" />
-                        <Room id="room_11" room={this.props.rooms[10]} profs={this.props.profs} edit_room={this.props.edit_room} get_prof_locations={this.get_prof_locations} />
+                        <Room id="room_11" room={this.props.rooms[10]} profs={this.props.profs} edit_room={this.props.edit_room}
+                              get_prof_locations={this.get_prof_locations} save_to_storage={this.props.save_to_storage} load_from_storage={this.props.load_from_storage}/>
                     </div>
                     <div className="col">
                         <div className="house-spacer-2nd" />
                         <div className="house-spacer-2nd" />
                         <div className="house-spacer-2nd" />
-                        <Room id="room_7" room={this.props.rooms[6]} profs={this.props.profs} edit_room={this.props.edit_room} get_prof_locations={this.get_prof_locations} />
+                        <Room id="room_7" room={this.props.rooms[6]} profs={this.props.profs} edit_room={this.props.edit_room}
+                              get_prof_locations={this.get_prof_locations} save_to_storage={this.props.save_to_storage} load_from_storage={this.props.load_from_storage}/>
                         <div className="house-spacer-1st" />
-                        <Room id="room_12" room={this.props.rooms[11]} profs={this.props.profs} edit_room={this.props.edit_room} get_prof_locations={this.get_prof_locations} />
+                        <Room id="room_12" room={this.props.rooms[11]} profs={this.props.profs} edit_room={this.props.edit_room}
+                              get_prof_locations={this.get_prof_locations} save_to_storage={this.props.save_to_storage} load_from_storage={this.props.load_from_storage}/>
                     </div>
                     <div className="col">
                         <div className="house-spacer-2nd" />
                         <div className="house-spacer-2nd" />
                         <div className="house-spacer-2nd" />
-                        <Room id="room_8" room={this.props.rooms[7]} profs={this.props.profs} edit_room={this.props.edit_room} get_prof_locations={this.get_prof_locations} />
+                        <Room id="room_8" room={this.props.rooms[7]} profs={this.props.profs} edit_room={this.props.edit_room}
+                              get_prof_locations={this.get_prof_locations} save_to_storage={this.props.save_to_storage} load_from_storage={this.props.load_from_storage}/>
                         <div className="house-spacer-1st" />
-                        <Room id="room_13" room={this.props.rooms[12]} profs={this.props.profs} edit_room={this.props.edit_room} get_prof_locations={this.get_prof_locations} />
+                        <Room id="room_13" room={this.props.rooms[12]} profs={this.props.profs} edit_room={this.props.edit_room}
+                              get_prof_locations={this.get_prof_locations} save_to_storage={this.props.save_to_storage} load_from_storage={this.props.load_from_storage}/>
                     </div>
                 </div>
             </div>

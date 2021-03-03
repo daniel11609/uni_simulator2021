@@ -49,6 +49,6 @@ export default class Config {
                     
     static currencies =  [{id:1, name:"student",amount:0},
                         {id:2,name:"exmat",amount:69},
-                        {id:3,name:"degree",amount:2},
+                        {id:3,name:"degree",amount:25},
     ]
 }

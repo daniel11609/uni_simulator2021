@@ -4,6 +4,9 @@ import '../../../component-design/CGU/Room.css';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import SpeedIcon from '@material-ui/icons/Speed';
+import PeopleIcon from '@material-ui/icons/People';
+import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
 
 
 export default class RoomModal extends React.Component {
@@ -54,7 +57,16 @@ export default class RoomModal extends React.Component {
                         <div className="room-modal-content">
                             <h2 id="transition-modal-title">
                                 {this.props.room.name}
-                                </h2>
+                            </h2>
+                            <p>
+                                <SpeedIcon/><span> Equipment: <strong>{this.props.room.equipment} / 5</strong></span>
+                                <span style={{marginLeft: "10px"}}></span>
+                                <button className={"btn btn-primary "+(this.props.room.equipment === 5 ? ("disabled") : (""))} style={{padding: "0px 6px 0px 5px"}}
+                                        onClick={async () => {await this.add_equipment()}}>+</button>
+                                <br/>
+                                <PeopleIcon/> Capacity: <strong>{this.props.room.capacity}</strong>
+                                {this.state.prof_name ? (<span><br/><RecordVoiceOverIcon/> Teaching: <strong>{this.state.prof_name}</strong></span>) : ("")}
+                            </p>
                             {this.state.prof_name ? (
                                 <div>{this.render_prof()}</div>
                             ) : (
@@ -70,7 +82,6 @@ export default class RoomModal extends React.Component {
 
     render_empty() {
         return <div>
-            <p>Equipment: {this.props.room.equipment}<br/> Capacity: {this.props.room.capacity}</p>
             <p>This room is missing a professor.</p>
             <div style={{display: "flex", marginBottom: "20px"}}>
                 <select className="form-select" aria-label="Default select example" onChange={(event => {this.setState({selected_prof: event.target.value})})}>
@@ -82,8 +93,25 @@ export default class RoomModal extends React.Component {
             <div className="progress-bar bg-success" role="progressbar"
                  style={{width: this.props.progress + "%", marginBottom: "15px"}} aria-valuenow="25" aria-valuemin="0"
                  aria-valuemax="100">{Math.round(this.props.progress)} %</div>
-            <button className="btn btn-light" onClick={() => {this.props.run()}}>Run Without</button>
+            <button className={"btn btn-light"+(this.props.progress > 0 && this.props.progress < 100 ? ("disabled") : (""))} onClick={() => {this.props.run()}}>Run Without</button>
         </div>
+    }
+
+    async add_equipment() {
+        const upgrade_cost = Math.pow((this.props.room.equipment+1+Math.round(Number(this.props.room.id)/2)), 2)+20
+        if(window.confirm("Do you really want to upgrade this room to level "+(this.props.room.equipment+1)+" for "+upgrade_cost+" degrees?")) {
+            if(Number(this.props.load_from_storage("currencies_3").amount) < upgrade_cost) {
+                alert("Not enough balance.");
+                return;
+            }
+            let new_currency = this.props.load_from_storage("currencies_3");
+            new_currency.amount = Number(new_currency.amount) - upgrade_cost
+            this.props.save_to_storage("currencies_3", new_currency);
+            let new_room = this.props.room;
+            new_room.equipment += 1;
+            await this.props.edit_room(this.props.room.id, new_room);
+            this.componentDidMount()
+        }
     }
 
     async add_prof() {
@@ -106,7 +134,6 @@ export default class RoomModal extends React.Component {
 
     render_prof() {
         return <div>
-            <p>Equipment: {this.props.room.equipment}<br/>Capacity: {this.props.room.capacity}<br/>Professor: {this.state.prof_name}</p>
             <img className="prof-img" src={this.state.prof_img} />
             <div className="progress-bar bg-success" role="progressbar"
                  style={{width: this.props.progress + "%", marginBottom: "15px"}} aria-valuenow="25" aria-valuemin="0"

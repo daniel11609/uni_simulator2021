@@ -70,9 +70,9 @@ export default class App extends React.Component {
             case "login":
                 return <Login set_user_name={this.set_user_name} />;
             case "game":
-                return <Game rooms={this.state.rooms} profs={this.state.profs} edit_room={this.edit_room} />;
+                return <Game save_to_storage={this.save_to_storage} load_from_storage={this.load_from_storage} rooms={this.state.rooms} profs={this.state.profs} edit_room={this.edit_room} />;
             case "shop":
-                return <Shop items={this.state.items} profs={this.state.profs}/>;
+                return <Shop items={this.state.items} profs={this.state.profs} />;
             case "profs":
                 return <Profs profs={this.state.profs}/>;
             case "settings":
@@ -111,12 +111,12 @@ export default class App extends React.Component {
 
     // STORAGE FUNCTIONS
 
-    save_to_storage(key, object) {
+    save_to_storage = (key, object) => {
         // local storage can only store strings, so we convert the json data of the object to a string
         localStorage.setItem(this.state.user_name+"_"+key, JSON.stringify(object));
     }
 
-    load_from_storage(key) {
+    load_from_storage = (key) => {
         // we convert the string json data to a real object and return it
         return JSON.parse(localStorage.getItem(this.state.user_name+"_"+key));
     }
