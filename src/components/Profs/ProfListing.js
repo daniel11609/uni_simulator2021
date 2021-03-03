@@ -63,7 +63,7 @@ export default class ProfListing extends React.Component
         let amount = JSON.parse(localStorage.getItem(user_name+"_currencies_2")).amount;
         if(price>amount)
         {
-            alert("You need to have more exmatricualtions")
+            alert("You need to have more exmatriculations!")
             return;
         }
         else
