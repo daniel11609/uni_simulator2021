@@ -1,3 +1,5 @@
+import { PowerOff } from "@material-ui/icons";
+
 class RoomCalc {
     // returns all stats with the current prof as JSON
      calcRoom(room, prof) 
@@ -36,5 +38,28 @@ class RoomCalc {
             exmatriculations: exmatric,
             degrees: degrees,
         }}       
+    }
+
+    calcEarningOfflineTime(room, prof){
+        roomstats = this.calcRoom(room, prof);
+        exit_time = Date.parse(localStorage.getItem('exit_time'));
+        cur_time = Date.now();
+        diff = cur_time - exit_time;
+        roomData = localStorage.getItem("room_"+room.id);
+        roomRuntime = Config.equipmentTime[roomData.equipment].time;
+
+        timesRun = floor(diff / roomRuntime);
+
+        let studentsEarned = timesRun * roomstats.roomStats.studentAmount;
+        let exmatEarned = timesRun * roomstats.roomStats.exmatriculations;
+        let degEarned = timesRun * roomstats.roomStats.degrees;
+
+        return {
+            earnings:{
+                students: studentsEarned,
+                exmatriculations: exmatEarned,
+                degrees: degEarned
+            }
+        }
     }
 }
