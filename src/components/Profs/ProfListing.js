@@ -58,8 +58,22 @@ export default class ProfListing extends React.Component
     }
     buyProf(price,id)
     {
-        alert(price+" "+id)
         
+        let user_name = localStorage.getItem("user_name");
+        let amount = JSON.parse(localStorage.getItem(user_name+"_currencies_2")).amount;
+        if(price>amount)
+        {
+            alert("You need to have more exmatricualtions")
+            return;
+        }
+        else
+        { //update states
+            let money_new = amount-price;
+            localStorage.setItem(user_name+"_currencies_2",money_new);
+            let prof = JSON.parse(localStorage.getItem(user_name+"_prof_"+id));
+            prof.locked = false;
+            localStorage.setItem(user_name+"_prof_"+id,prof);
+        }
     }
 
 
