@@ -110,7 +110,7 @@ export default class Room extends React.Component {
 
     runCGU = () => {
         this.setState({running: true});
-        let timeNeeded = Config.equipmentTime[this.props.room.equipment].time;
+        let timeNeeded = Config.equipmentTime[this.props.room.equipment].time/1000;
         this.setState({progressUpdate: Number(100/timeNeeded)});
         this.setState({runningTime: timeNeeded})
         this.startTimer();
