@@ -25,12 +25,12 @@ export default class Config {
         {id: 1, image: "", image_title: "", title: "Seltener Gegenstand", price: 2, used_in: -1, description: "Das ist ein seltener Gegenstand der durchaus selten sein kann. Seine Anwendung ist recht selten, da seltenerweise nur seltene Ereignisse auftreten."},
     ]
     //time whats needed with level od equipment in ms
-    static equipmentTime = [{equipment:0, time: 60},
-        {equipment:1, time: 45},
-        {equipment:2, time: 30},
-        {equipment:3, time: 25},
-        {equipment:4, time: 20},
-        {equipment:5, time: 15},]
+    static equipmentTime = [{equipment:0, time: 60000},
+        {equipment:1, time: 45000},
+        {equipment:2, time: 30000},
+        {equipment:3, time: 25000},
+        {equipment:4, time: 20000},
+        {equipment:5, time: 15000},]
 
     static profs = [{id:1, name:"Prof. Lexi", locked: false, img:"/profs/prof1.svg", pop:0.5, ex:0.8, price:50},
                     {id:2, name:"Dr. Caddy", locked: false, img:"/profs/prof2.svg", pop:0.4, ex:0.3, price:70},

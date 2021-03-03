@@ -42,10 +42,10 @@ class RoomCalc {
 
     calcEarningOfflineTime(room, prof){
         let roomstats = this.calcRoom(room, prof);
-        let exit_time = Date.parse(localStorage.getItem('exit_time'));
+        let exit_time = Date.parse(localStorage.getItem(localStorage.getItem('user_name') + '_exit_time'));
         let cur_time = Date.now();
         let diff = cur_time - exit_time;
-        let roomData = localStorage.getItem("room_"+room.id);
+        let roomData = localStorage.getItem(localStorage.getItem('user_name') + "_room_"+room.id);
         let roomRuntime = Config.equipmentTime[roomData.equipment].time;
 
         let timesRun = floor(diff / roomRuntime);
