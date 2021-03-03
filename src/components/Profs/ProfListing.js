@@ -21,7 +21,7 @@ export default class ProfListing extends React.Component
         console.log(this.props.prof)
         for (const [idx, val] of this.props.prof.entries()){
             if (val.locked){
-                btnProf = (<button type="button" class="btn btn-primary" onClick={()=>{this.buyProf(val.price, idx)}}>Buy for {val.price} <RemoveCircleOutlineIcon/></button>)
+                btnProf = (<button type="button" class="btn btn-primary" onClick={()=>{this.buyProf(val.price, idx+1)}}>Buy for {val.price} <RemoveCircleOutlineIcon/></button>)
             }else{
                 btnProf = (<button type="button" class="btn btn-primary">Add to room</button>)
             }
@@ -68,11 +68,13 @@ export default class ProfListing extends React.Component
         }
         else
         { //update states
-            let money_new = amount-price;
-            localStorage.setItem(user_name+"_currencies_2",money_new);
+            let money_new = {id:2,name:"exmat",amount:amount-price};
+            localStorage.setItem(user_name+"_currencies_2",JSON.stringify(money_new));
             let prof = JSON.parse(localStorage.getItem(user_name+"_prof_"+id));
             prof.locked = false;
-            localStorage.setItem(user_name+"_prof_"+id,prof);
+            console.log(prof)
+            localStorage.setItem(user_name+"_prof_"+id,JSON.stringify(prof));
+            window.location.reload();
         }
     }
 
