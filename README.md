@@ -13,13 +13,18 @@ Contributors:
 Joschua Sillmann, Alessa Bayer, Cedric Schmidt, Daniel Erhard, Manuel Emmert, Tim Bader, Xena Letters, Elenora Stober 
 
 
-Live Version:
+Live Versions:
+Repl.it:
 https://unisimulator2021.daniel11609.repl.co/
-
-Alternative domains:
 http://uni-si.ml/
 http://2021uni-si.ml/
+
+Firebase:
+https://uni-sim2021.web.app/
+https://uni-sim2021.firebaseapp.com/
 http://2021-uni-si.ml/
+
+
 
 ## Getting Started with Create React App
 

@@ -30,3 +30,13 @@ uni-sim-2021/npm-debug.log*
 uni-sim-2021/yarn.lock
 uni-sim-2021/yarn-debug.log*
 uni-sim-2021/yarn-error.log*
+
+
+
+.firebaserc
+build
+firebase.json
+.firebase/hosting.YnVpbGQ.cache
+
+
+package-lock.json

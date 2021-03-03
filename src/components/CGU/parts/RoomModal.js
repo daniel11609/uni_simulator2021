@@ -121,6 +121,7 @@ export default class RoomModal extends React.Component {
         }
         let new_room = this.props.room;
         new_room.prof = this.state.selected_prof;
+        this.props.setProf(this.state.selected_prof)
         await this.props.edit_room(this.props.room.id, new_room);
         this.componentDidMount()
     }
@@ -128,6 +129,7 @@ export default class RoomModal extends React.Component {
     async remove_prof() {
         let new_room = this.props.room;
         new_room.prof = -1;
+        this.props.setProf(-1)
         await this.props.edit_room(this.props.room.id, new_room);
         await this.componentDidMount()
     }

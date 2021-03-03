@@ -3,7 +3,7 @@ import '../../component-design/CGU/Room.css';
 
 import Config from "../../helper/Config.js"
 import RoomModal from "./parts/RoomModal";
-
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 
 export default class Room extends React.Component {
 
@@ -29,17 +29,41 @@ export default class Room extends React.Component {
         clearInterval(this.ticker);
     }
 
+    setProf = async(prof_id) =>
+    {
+        this.setState({prof_id:prof_id})
+    }
 
+    buyRoom()
+    {
+        let user_name = localStorage.getItem("user_name");
+        let degrees = JSON.parse(localStorage.getItem(user_name+"_currencies_3"));
+        if(degrees.amount<this.props.room.price)
+        {
+            alert("You need more Degrees to buy a new room")
+            return;
+        }
+        else{
+            let money_new = {id:3,name:"degree",amount:degrees.amount-this.props.room.price};
+            localStorage.setItem(user_name+"_currencies_3",JSON.stringify(money_new));
+            let room = JSON.parse(localStorage.getItem(user_name+"_room_"+this.props.room.id));
+            room.locked = false;
+            console.log(room)
+            localStorage.setItem(user_name+"_room_"+this.props.room.id,JSON.stringify(room));
+            window.location.reload();
+        }
+
+    }
 
     render() {
         return(
             <div className='Room' >
                 {
                     this.props.room.locked ? (  // locked
-                        <div className="locked-room">
+                        <div className="locked-room" onClick={()=>{this.buyRoom()}}>
                             <img className="locked-room locked-img" src="/misc/locked_room.svg" />
                             <p style={{textAlign: "center", fontWeight: "500"}}>
-                                {this.props.room.name}
+                                {this.props.room.name+" "} <span class="badge bg-secondary">{this.props.room.price} <AssignmentTurnedInIcon></AssignmentTurnedInIcon></span>
                                 </p>
                         </div>
                     ) : ( // unlocked - roof rooms get special css treatment
@@ -50,7 +74,7 @@ export default class Room extends React.Component {
                                 {this.props.room.name}
                                 <span style={{color: "RGB(3, 223, 252)", fontWeight: "700"}}>{this.state.progress > 0 ? (" - "+Math.round(this.state.progress)+"%") : ("")}</span>
                             </p>
-                            <RoomModal open={this.state.modal_open} run={this.runCGU} progress={this.state.progress}
+                            <RoomModal setProf={this.setProf} open={this.state.modal_open} run={this.runCGU} progress={this.state.progress}
                                        close_modal={this.close_modal} room={this.props.room} profs={this.props.profs}
                                        edit_room={this.props.edit_room} get_prof_locations={this.props.get_prof_locations}
                                        save_to_storage={this.props.save_to_storage} load_from_storage={this.props.load_from_storage}/>
@@ -102,11 +126,20 @@ export default class Room extends React.Component {
                 this.setState({running: false, progress: 0, progressUpdate: 0})
                 clearInterval(this.ticker);
             }
+            if(this.state.prof_id>-1){
+               
+                this.runCGU();
+            }
         }
         if(progress >= 100){
             this.setState({running: false, progress: 0, progressUpdate: 0})
             clearInterval(this.ticker);
+            if(this.state.prof_id>-1){
+                
+                this.runCGU();
+            }
         }
+        
     }
 
     runCGU = () => {
