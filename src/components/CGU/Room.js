@@ -3,7 +3,7 @@ import '../../component-design/CGU/Room.css';
 
 import Config from "../../helper/Config.js"
 import RoomModal from "./parts/RoomModal";
-
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 
 export default class Room extends React.Component {
 
@@ -34,16 +34,36 @@ export default class Room extends React.Component {
         this.setState({prof_id:prof_id})
     }
 
+    buyRoom()
+    {
+        let user_name = localStorage.getItem("user_name");
+        let degrees = JSON.parse(localStorage.getItem(user_name+"_currencies_3"));
+        if(degrees.amount<this.props.room.price)
+        {
+            alert("You need more Degrees to buy a new room")
+            return;
+        }
+        else{
+            let money_new = {id:3,name:"degree",amount:degrees.amount-this.props.room.price};
+            localStorage.setItem(user_name+"_currencies_3",JSON.stringify(money_new));
+            let room = JSON.parse(localStorage.getItem(user_name+"_room_"+this.props.room.id));
+            room.locked = false;
+            console.log(room)
+            localStorage.setItem(user_name+"_room_"+this.props.room.id,JSON.stringify(room));
+            window.location.reload();
+        }
+
+    }
 
     render() {
         return(
             <div className='Room' >
                 {
                     this.props.room.locked ? (  // locked
-                        <div className="locked-room">
+                        <div className="locked-room" onClick={()=>{this.buyRoom()}}>
                             <img className="locked-room locked-img" src="/misc/locked_room.svg" />
                             <p style={{textAlign: "center", fontWeight: "500"}}>
-                                {this.props.room.name}
+                                {this.props.room.name+" "} <span class="badge bg-secondary">{this.props.room.price} <AssignmentTurnedInIcon></AssignmentTurnedInIcon></span>
                                 </p>
                         </div>
                     ) : ( // unlocked - roof rooms get special css treatment
