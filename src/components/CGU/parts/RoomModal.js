@@ -98,7 +98,7 @@ export default class RoomModal extends React.Component {
     }
 
     async add_equipment() {
-        const upgrade_cost = Math.pow((this.props.room.equipment+1+Math.round(Number(this.props.room.id)/2)), 2)+20
+        const upgrade_cost = Math.pow((this.props.room.equipment+1+Math.round(Number(this.props.room.id))), 2)+20
         if(window.confirm("Do you really want to upgrade this room to level "+(this.props.room.equipment+1)+" for "+upgrade_cost+" degrees?")) {
             if(Number(this.props.load_from_storage("currencies_3").amount) < upgrade_cost) {
                 alert("Not enough balance.");
