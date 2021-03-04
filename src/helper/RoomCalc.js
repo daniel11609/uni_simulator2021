@@ -1,9 +1,7 @@
-import { PowerOff } from "@material-ui/icons";
 
 export default class RoomCalc {
     // returns all stats with the current prof as JSON
-     static calcRoom(room, prof)
-    {
+    static calcRoom(room, prof) {
         /**
          * room:{ id:0,
          * capacity:20
@@ -17,17 +15,17 @@ export default class RoomCalc {
          */
         let pop;
         let ex;
-        if(prof==null) {
-             pop = 0.5;
-             ex = 0.5; 
+        if (prof == null) {
+            pop = 0.5;
+            ex = 0.5;
         } else {
-             pop = prof.pop;
-             ex = prof.ex;
+            pop = prof.pop;
+            ex = prof.ex;
         }
         let capacity = room.capacity;
-        let students = Math.round(pop*capacity+0.5);
-        let exmatric = Math.round(students*ex-0.5); 
-        let degrees = students-exmatric;
+        let students = Math.round(pop * capacity + 0.5);
+        let exmatric = Math.round(students * ex - 0.5);
+        let degrees = students - exmatric;
         return {
             id: room.id,
             capacity: capacity,
