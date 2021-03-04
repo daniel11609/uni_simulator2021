@@ -14,7 +14,7 @@ export default class Config {
         {id: 13, purchased: false, running: false, starting_time: 0, progress: 0, locked: true, name: "Art", equipment: 0, capacity: 20, prof: -1, price:1000}
         ]
 
-    static items = [{id: 1, image: "", image_title: "", title: "Get 100 Exmatriculations!", price: 100, used_in: -1, description: "Get 100 Exmatiriculations for 100 Students!!!"},
+    static items = [{id: 1, image: "", image_title: "", title: "Get 100 Exmatriculations!", price: 100, used_in: -1, description: "Get 100 exmatriculations for 100 Students!!!"},
         ]
     //time whats needed with level od equipment in ms
     static equipmentTime = 
