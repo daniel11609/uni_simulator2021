@@ -158,7 +158,7 @@ export default class RoomModal extends React.Component {
             <div className="progress-bar bg-success" role="progressbar"
                  style={{width: Math.round(this.props.room.progress*100) + "%", marginBottom: "15px"}} aria-valuenow="25" aria-valuemin="0"
                  aria-valuemax="100">{Math.round(this.props.room.progress*100)} %</div>
-            <div>
+            <div className="prof-buttons">
                 <button className={"btn btn-light "+(this.props.room.progress > 0 && this.props.room.progress < 1 ? ("disabled") : (""))}
                         onClick={() => {this.props.run()}}>Run</button>
                 <button className="btn btn-danger" style={{marginLeft: "20px"}} onClick={async () => {await this.remove_prof()}}>Remove Prof</button>

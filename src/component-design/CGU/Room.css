@@ -61,6 +61,10 @@
     cursor: pointer;
     transition: transform .2s;
 }
+.prof-buttons {
+    display: flex;
+    justify-content: space-between;
+}
 
 #room1{
     width: 95%;
