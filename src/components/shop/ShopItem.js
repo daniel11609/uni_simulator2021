@@ -39,32 +39,28 @@ export default class ShopItem extends React.Component {
                     </CardActionArea>
 
                     <CardActions className="shop-item-buttons">
-                        <Button size="small" color="primary" onClick={()=>{this.buyExmatric()}}>
+                        <Button size="small" color="primary" onClick={() => { this.buyExmatric() }}>
                             Buy for {this.props.price} <SupervisedUserCircleIcon></SupervisedUserCircleIcon>
                         </Button>
-                        <Button size="small" color="primary">
-                            Learn More
-                        </Button>
+
                     </CardActions>
                 </Card>
             </div>
         );
     }
-    buyExmatric()
-    {
+    buyExmatric() {
         let user_name = localStorage.getItem("user_name");
 
-        let students = JSON.parse(localStorage.getItem(user_name+"_currencies_1"));
-        if(students.amount<this.props.price)
-        {
+        let students = JSON.parse(localStorage.getItem(user_name + "_currencies_1"));
+        if (students.amount < this.props.price) {
             alert("You need more Students to buy this Item")
         }
-        else{
-            students.amount= students.amount-this.props.price;
-            let exmatric = JSON.parse(localStorage.getItem(user_name+"_currencies_2"));
-            exmatric.amount=exmatric.amount + this.props.price;
-            localStorage.setItem(user_name+"_currencies_1",JSON.stringify(students));
-            localStorage.setItem(user_name+"_currencies_2",JSON.stringify(exmatric));
+        else {
+            students.amount = students.amount - this.props.price;
+            let exmatric = JSON.parse(localStorage.getItem(user_name + "_currencies_2"));
+            exmatric.amount = exmatric.amount + this.props.price;
+            localStorage.setItem(user_name + "_currencies_1", JSON.stringify(students));
+            localStorage.setItem(user_name + "_currencies_2", JSON.stringify(exmatric));
             alert("You sucessfully bought the item ")
         }
 
