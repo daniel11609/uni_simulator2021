@@ -25,13 +25,6 @@
     transform: scale(1.05);
 }
 
-.unlocked-img{ /*TODO: Fix image size*/
-    width: 150px;
-    height: 150px;
-    position: absolute;
-    cursor: pointer;
-    transition: transform .2s;
-}
 
 .roof-1st {
     width: 190px;
@@ -60,4 +53,78 @@
 .prof-img {
     width: 200px;
     height: 250px;
+}
+
+.unlocked-img{ /*TODO: Fix image size*/
+    
+    position: absolute;
+    cursor: pointer;
+    transition: transform .2s;
+}
+
+#room1{
+    width: 95%;
+    height: 110%;
+}
+
+#room2{
+    width: 80%;
+    height: 120%;
+    margin-right: 20;
+}
+
+#room3{
+    width: 100%;
+    height: 110%;
+    margin-left: 5%;
+}
+#room4{
+    width: 100%;
+    height: 150%;
+    margin-top: 10%;
+}
+#room5{
+    width: 100%;
+    height: 140%;
+    margin-top: 25%;
+}
+#room6{
+    width: 100%;
+    height: 150%;
+    margin-top: 10%;
+}
+#room7{
+    width: 100%;
+    height: 150%;
+    margin-top: 10%;
+}
+#room8{
+    width: 100%;
+    height: 110%;
+    margin-top: 10%;
+}
+#room9{
+    width: 100%;
+    height: 120%;
+    margin-top: 10%;
+}
+#room10{
+    width: 100%;
+    height: 120%;
+    margin-top: 10%;
+}
+#room11{
+    width: 100%;
+    height: 120%;
+    margin-top: 10%;
+}
+#room12{
+    width: 100%;
+    height: 100%;
+    margin-top: 20%;
+}
+#room13{
+    width: 100%;
+    height: 110%;
+    margin-top: 10%;
 }

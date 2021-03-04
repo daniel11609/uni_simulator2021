@@ -74,7 +74,7 @@ export default class Room extends React.Component {
                     ) : ( // unlocked - roof rooms get special css treatment
                         <div id={this.props.room.id} className={"unlocked-room " + (this.props.room.id === 1 ? ("roof-2nd") : (this.props.room.id < 4 ? ("roof-1st") : ("")))}
                         onClick={event => {this.onRoomClick(event); }}>
-                            <img className='unlocked-img' src={this.getRoomImage(this.props.room.id, this.props.room.purchased)} alt=""/>
+                            <img id={'room' + this.props.room.id} className='unlocked-img' src={this.getRoomImage(this.props.room.id, this.props.room.purchased)} alt=""/>
                             <p style={{textAlign: "center", fontWeight: "500"}}>
                                 {this.props.room.name}
                                 <span style={{color: "RGB(3, 223, 252)", fontWeight: "700"}}>{this.state.progress > 0 ? (" - "+Math.round(this.state.progress)+"%") : ("")}</span>
