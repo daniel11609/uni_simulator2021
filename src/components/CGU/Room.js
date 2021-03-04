@@ -47,7 +47,7 @@ export default class Room extends React.Component {
             localStorage.setItem(user_name+"_currencies_3",JSON.stringify(money_new));
             let room = JSON.parse(localStorage.getItem(user_name+"_room_"+this.props.room.id));
             room.locked = false;
-            console.log(room)
+            //console.log(room)
             localStorage.setItem(user_name+"_room_"+this.props.room.id,JSON.stringify(room));
             window.location.reload();
         }
@@ -130,13 +130,15 @@ export default class Room extends React.Component {
             if(this.props.room.prof>-1)
             {
                 let profstats = Config.profs[this.props.room.prof-1];
-                console.log(profstats)
+                //console.log(profstats)
                  prof = {id : profstats.id, pop: profstats.pop, ex: profstats.ex}
             }
             let stats = this.calcRoom(room,prof);
-            console.log(stats);
-            console.log(prof);
+
+            //console.log(stats);
+            //console.log(prof);
             // TODO: update money
+
             let user_name = localStorage.getItem("user_name");
             let student = JSON.parse(localStorage.getItem(user_name+"_currencies_1"));
             let exmat = JSON.parse(localStorage.getItem(user_name+"_currencies_2"));

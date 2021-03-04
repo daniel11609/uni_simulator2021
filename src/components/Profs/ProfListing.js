@@ -18,7 +18,7 @@ export default class ProfListing extends React.Component
     render() {
         const reshtml = [];
         let btnProf;
-        console.log(this.props.prof)
+        //console.log(this.props.prof)
         for (const [idx, val] of this.props.prof.entries()){
             if (val.locked){
                 btnProf = (<div class="card-footer"><button type="button" class="btn btn-primary" onClick={()=>{this.buyProf(val.price, idx+1)}}>Buy for {val.price} <RemoveCircleOutlineIcon/></button></div>)
@@ -72,7 +72,7 @@ export default class ProfListing extends React.Component
             localStorage.setItem(user_name+"_currencies_2",JSON.stringify(money_new));
             let prof = JSON.parse(localStorage.getItem(user_name+"_prof_"+id));
             prof.locked = false;
-            console.log(prof)
+            //console.log(prof)
             localStorage.setItem(user_name+"_prof_"+id,JSON.stringify(prof));
             window.location.reload();
         }
