@@ -17,7 +17,7 @@ export default class ProfListing extends React.Component
     
     render() {
         const reshtml = [];
-        var btnProf;
+        let btnProf;
         console.log(this.props.prof)
         for (const [idx, val] of this.props.prof.entries()){
             if (val.locked){
