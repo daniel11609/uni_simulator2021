@@ -40,13 +40,13 @@ export default class Config {
                     {id:5, name:"Dr. Strange", locked: true, img:"/profs/prof5.svg", pop:0.7, ex:0.1, price:200},
                     {id:6, name:"Prof. Bilicht", locked: true, img:"/profs/prof6.svg", pop:0.8, ex:0.2, price:250},
                     {id:7, name:"Dr. Handsome", locked: true, img:"/profs/prof7.svg", pop:0.3, ex:0.7, price:300},
-                    {id:8, name:"Prof. Natas", locked: true, img:"/profs/prof8.svg", pop:0.1, ex:1, price:400},
-                    {id:9, name:"Dr. Lele", locked: true, img:"/profs/prof9.svg", pop:0, ex:2, price:500},
+                    {id:8, name:"Prof. Natas", locked: true, img:"/profs/prof8.svg", pop:-1, ex:2, price:400},
+                    {id:9, name:"Dr. Lele", locked: true, img:"/profs/prof9.svg", pop:0.5, ex:0.69, price:500},
                     {id:10, name:"Dr. Krueger", locked: true, img:"/profs/prof10.svg", pop:1, ex:0, price:600},
                     {id:11, name:"Dr. Stommer", locked: true, img:"/profs/prof11.svg", pop:0.2, ex:0.9, price:700},
                     {id:12, name:"Prof. Pong", locked: true, img:"/profs/prof12.svg", pop:1, ex:0.7, price:800},
                     {id:13, name:"Holy Nicotina", locked: true, img:"/profs/prof13.svg", pop:0.2, ex:1, price:900},
-                    {id:14, name:"Mc Data", locked: true, img:"/profs/prof14.svg", pop:0.5, ex:0.5, price:10000000}]
+                    {id:14, name:"Mc Data", locked: true, img:"/profs/prof14.svg", pop:4.20, ex:4.20, price:10000000}]
                     
     static currencies =  [{id:1, name:"student",amount:0},
                         {id:2,name:"exmat",amount:69},
