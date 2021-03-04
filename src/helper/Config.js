@@ -25,6 +25,9 @@ export default class Config {
         { equipment: 4, time: 20000 },
         { equipment: 5, time: 15000 },]
 
+    // Please note!
+    //All values are purely random and are not intended to offend anyone. 
+    
     static profs = [{ id: 1, name: "Prof. Lexi", locked: true, img: "/profs/prof1.svg", pop: 0.5, ex: 0.8, price: 150 },
     { id: 2, name: "Prof. Huntmaster", locked: true, img: "/profs/prof4.svg", pop: 1, ex: 0.8, price: 333 },
     { id: 3, name: "Dr. Cell", locked: false, img: "/profs/prof3.svg", pop: 0.5, ex: 0.5, price: 600 },
