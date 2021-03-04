@@ -4,7 +4,6 @@ import '../../component-design/CGU/Room.css';
 import Config from "../../helper/Config.js"
 import RoomModal from "./parts/RoomModal";
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
-import RoomCalc from "../../helper/RoomCalc"
 export default class Room extends React.Component {
 
     constructor(props) {
@@ -93,7 +92,7 @@ export default class Room extends React.Component {
 
     onRoomClick(event) {
         if(!this.state.modal_open) {
-            const id = event.currentTarget.id;
+           // const id = event.currentTarget.id;
             this.setState({modal_open: true});
         }
     }
