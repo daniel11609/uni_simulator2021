@@ -84,7 +84,7 @@ export default class Game extends React.Component {
                 </div>
             </div>
         );
-    }
+    }        
 
     // returns array of tuples (prof_id, room_id)
     get_prof_locations = () => {

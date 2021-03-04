@@ -7,6 +7,7 @@ import Shop from "./components/page/Shop";
 import Profs from "./components/page/Profs";
 import Settings from "./components/page/Settings";
 import Config from "./helper/Config.js"
+import RoomCalc from "./helper/RoomCalc";
 
 export default class App extends React.Component {
 
@@ -97,6 +98,47 @@ export default class App extends React.Component {
     exit_time_updater() {
         if(this.state.page !== "login") {
             this.save_to_storage("exit_time", Date.now());
+            let rooms = this.state.rooms;
+            for(let r = 0; r < rooms.length; r++) {
+                if(rooms[r].running) {
+                    const round = Config.equipmentTime[rooms[r].equipment].time;
+                    const starting_time = rooms[r].starting_time
+                    const progress = (Date.now()-starting_time)/round
+                    const completed_rounds = Math.floor(progress);
+                    const new_starting_time = starting_time+completed_rounds*round;
+                    const current_round_progress = progress-completed_rounds;
+                    const room_for_calc = {id: rooms[r].id, capacity: rooms[r].capacity};
+                    let prof_for_calc = null;
+                    if(rooms[r].prof > -1) {
+                        let prof_stats = Config.profs[rooms[r].prof-1];
+                        console.log(prof_stats)
+                        prof_for_calc = {id : prof_stats.id, pop: prof_stats.pop, ex: prof_stats.ex}
+                        console.log(prof_for_calc)
+                    }
+                    rooms[r].starting_time = new_starting_time;
+                    rooms[r].progress = current_round_progress;
+                    this.edit_room(rooms[r].id, rooms[r]).then(r => null);
+                    let new_students = 0;
+                    let new_exmats = 0;
+                    let new_degrees = 0;
+                    for(let i = 0; i < completed_rounds; i++) {
+                        const stats = RoomCalc.calcRoom(room_for_calc, prof_for_calc);
+                        console.log(stats)
+                        new_students += stats.studentAmount;
+                        new_exmats += stats.exmatriculations;
+                        new_degrees += stats.degrees;
+                    }
+                    let new_currency = this.load_from_storage("currencies_1");
+                    new_currency.amount = Number(new_currency.amount) + new_students;
+                    this.save_to_storage("currencies_1", new_currency);
+                    new_currency = this.load_from_storage("currencies_2");
+                    new_currency.amount = Number(new_currency.amount) + new_exmats;
+                    this.save_to_storage("currencies_2", new_currency);
+                    new_currency = this.load_from_storage("currencies_3");
+                    new_currency.amount = Number(new_currency.amount) + new_degrees;
+                    this.save_to_storage("currencies_3", new_currency);
+                }
+            }
         }
     }
 

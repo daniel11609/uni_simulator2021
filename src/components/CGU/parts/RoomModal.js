@@ -91,9 +91,9 @@ export default class RoomModal extends React.Component {
                 <button className="btn btn-primary" onClick={(async () => {await this.add_prof()})}>Add Prof</button>
             </div>
             <div className="progress-bar bg-success" role="progressbar"
-                 style={{width: this.props.progress + "%", marginBottom: "15px"}} aria-valuenow="25" aria-valuemin="0"
-                 aria-valuemax="100">{Math.round(this.props.progress)} %</div>
-            <button className={"btn btn-light"+(this.props.progress > 0 && this.props.progress < 100 ? ("disabled") : (""))} onClick={() => {this.props.run()}}>Run Without</button>
+                 style={{width: Math.round(this.props.room.progress*100) + "%", marginBottom: "15px"}} aria-valuenow="25" aria-valuemin="0"
+                 aria-valuemax="100">{Math.round(this.props.room.progress*100)} %</div>
+            <button className={"btn btn-light "+(this.props.room.progress > 0 && this.props.room.progress < 1 ? ("disabled") : (""))} onClick={() => {this.props.run()}}>Run Without</button>
         </div>
     }
 
@@ -109,6 +109,8 @@ export default class RoomModal extends React.Component {
             this.props.save_to_storage("currencies_3", new_currency);
             let new_room = this.props.room;
             new_room.equipment += 1;
+            new_room.running = false;
+            new_room.progress = 0;
             await this.props.edit_room(this.props.room.id, new_room);
             this.componentDidMount()
         }
@@ -121,6 +123,8 @@ export default class RoomModal extends React.Component {
         }
         let new_room = this.props.room;
         new_room.prof = this.state.selected_prof;
+        new_room.running = false;
+        new_room.progress = 0;
         this.props.setProf(this.state.selected_prof)
         await this.props.edit_room(this.props.room.id, new_room);
         this.componentDidMount()
@@ -129,6 +133,8 @@ export default class RoomModal extends React.Component {
     async remove_prof() {
         let new_room = this.props.room;
         new_room.prof = -1;
+        new_room.running = false;
+        new_room.progress = 0;
         this.props.setProf(-1)
         await this.props.edit_room(this.props.room.id, new_room);
         await this.componentDidMount()
@@ -138,10 +144,10 @@ export default class RoomModal extends React.Component {
         return <div>
             <img className="prof-img" src={this.state.prof_img} />
             <div className="progress-bar bg-success" role="progressbar"
-                 style={{width: this.props.progress + "%", marginBottom: "15px"}} aria-valuenow="25" aria-valuemin="0"
-                 aria-valuemax="100">{Math.round(this.props.progress)} %</div>
+                 style={{width: Math.round(this.props.room.progress*100) + "%", marginBottom: "15px"}} aria-valuenow="25" aria-valuemin="0"
+                 aria-valuemax="100">{Math.round(this.props.room.progress*100)} %</div>
             <div>
-                <button className={"btn btn-light "+(this.props.progress > 0 && this.props.progress < 100 ? ("disabled") : (""))}
+                <button className={"btn btn-light "+(this.props.room.progress > 0 && this.props.room.progress < 1 ? ("disabled") : (""))}
                         onClick={() => {this.props.run()}}>Run</button>
                 <button className="btn btn-danger" style={{marginLeft: "20px"}} onClick={async () => {await this.remove_prof()}}>Remove Prof</button>
             </div>

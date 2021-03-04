@@ -1,17 +1,17 @@
 export default class Config {
-    static rooms = [{id: 1, purchased: true, locked: false, name: "Biology", equipment: 0, capacity: 20, prof: -1},
-        {id: 2, purchased: false, locked: false, name: "Computer Science", equipment: 0, capacity: 20, prof: -1},
-        {id: 3, purchased: false, locked: false, name: "Chemistry", equipment: 0, capacity: 20, prof: -1},
-        {id: 4, purchased: false, locked: true, name: "Literature", equipment: 0, capacity: 20, prof: -1, price:100},
-        {id: 5, purchased: false, locked: true, name: "Law", equipment: 0, capacity: 20, prof: -1, price:200},
-        {id: 6, purchased: false, locked: true, name: "Maths", equipment: 0, capacity: 20, prof: -1, price:300},
-        {id: 7, purchased: false, locked: true, name: "Mech. Engineering", equipment: 0, capacity: 20, prof: -1, price:400},
-        {id: 8, purchased: false, locked: true, name: "Music", equipment: 0, capacity: 20, prof: -1, price:500},
-        {id: 9, purchased: false, locked: true, name: "Sports", equipment: 0, capacity: 20, prof: -1, price:600},
-        {id: 10, purchased: false, locked: true, name: "History", equipment: 0, capacity: 20, prof: -1, price:700},
-        {id: 11, purchased: false, locked: true, name: "Geography", equipment: 0, capacity: 20, prof: -1, price:800},
-        {id: 12, purchased: false, locked: true, name: "Elec. Engineering", equipment: 0, capacity: 20, prof: -1, price:900},
-        {id: 13, purchased: false, locked: true, name: "Art", equipment: 0, capacity: 20, prof: -1, price:1000}
+    static rooms = [{id: 1, purchased: true, running: false, starting_time: 0, progress: 0, locked: false, name: "Biology", equipment: 0, capacity: 20, prof: -1},
+        {id: 2, purchased: false, running: false, starting_time: 0, progress: 0, locked: false, name: "Computer Science", equipment: 0, capacity: 20, prof: -1},
+        {id: 3, purchased: false, running: false, starting_time: 0, progress: 0, locked: false, name: "Chemistry", equipment: 0, capacity: 20, prof: -1},
+        {id: 4, purchased: false, running: false, starting_time: 0, progress: 0, locked: true, name: "Literature", equipment: 0, capacity: 20, prof: -1, price:100},
+        {id: 5, purchased: false, running: false, starting_time: 0, progress: 0, locked: true, name: "Law", equipment: 0, capacity: 20, prof: -1, price:200},
+        {id: 6, purchased: false, running: false, starting_time: 0, progress: 0, locked: true, name: "Maths", equipment: 0, capacity: 20, prof: -1, price:300},
+        {id: 7, purchased: false, running: false, starting_time: 0, progress: 0, locked: true, name: "Mech. Engineering", equipment: 0, capacity: 20, prof: -1, price:400},
+        {id: 8, purchased: false, running: false, starting_time: 0, progress: 0, locked: true, name: "Music", equipment: 0, capacity: 20, prof: -1, price:500},
+        {id: 9, purchased: false, running: false, starting_time: 0, progress: 0, locked: true, name: "Sports", equipment: 0, capacity: 20, prof: -1, price:600},
+        {id: 10, purchased: false, running: false, starting_time: 0, progress: 0, locked: true, name: "History", equipment: 0, capacity: 20, prof: -1, price:700},
+        {id: 11, purchased: false, running: false, starting_time: 0, progress: 0, locked: true, name: "Geography", equipment: 0, capacity: 20, prof: -1, price:800},
+        {id: 12, purchased: false, running: false, starting_time: 0, progress: 0, locked: true, name: "Elec. Engineering", equipment: 0, capacity: 20, prof: -1, price:900},
+        {id: 13, purchased: false, running: false, starting_time: 0, progress: 0, locked: true, name: "Art", equipment: 0, capacity: 20, prof: -1, price:1000}
         ]
 
     static items = [{id: 1, image: "", image_title: "", title: "Seltener Gegenstand", price: 2, used_in: -1, description: "Das ist ein seltener Gegenstand der durchaus selten sein kann. Seine Anwendung ist recht selten, da seltenerweise nur seltene Ereignisse auftreten."},

@@ -26,7 +26,7 @@ export default class Room extends React.Component {
     }
 
     componentWillUnmount() {
-        clearInterval(this.ticker);
+        // clearInterval(this.ticker);
     }
 
     setProf = async(prof_id) =>
@@ -163,11 +163,15 @@ export default class Room extends React.Component {
     }
 
     runCGU = () => {
-        this.setState({running: true});
-        let timeNeeded = Config.equipmentTime[this.props.room.equipment].time/1000;
-        this.setState({progressUpdate: Number(100/timeNeeded)});
-        this.setState({runningTime: timeNeeded})
-        this.startTimer();
+        // this.setState({running: true});
+        // let timeNeeded = Config.equipmentTime[this.props.room.equipment].time/1000;
+        // this.setState({progressUpdate: Number(100/timeNeeded)});
+        // this.setState({runningTime: timeNeeded})
+        // this.startTimer();
+        let room = this.props.room;
+        room.running = true;
+        room.starting_time = Date.now()
+        this.props.edit_room(room.id, room);
     }
 
     doUpdate() {
