@@ -17,13 +17,13 @@ export default class ProfListing extends React.Component
     
     render() {
         const reshtml = [];
-        var btnProf;
+        let btnProf;
         console.log(this.props.prof)
         for (const [idx, val] of this.props.prof.entries()){
             if (val.locked){
                 btnProf = (<div class="card-footer"><button type="button" class="btn btn-primary" onClick={()=>{this.buyProf(val.price, idx+1)}}>Buy for {val.price} <RemoveCircleOutlineIcon/></button></div>)
             }else{
-                //btnProf = (<button type="button" class="btn btn-primary">Add to room</button>)
+                btnProf = '';
             }
             if (val.locked == this.props.displayInShop){
                 reshtml.push(
