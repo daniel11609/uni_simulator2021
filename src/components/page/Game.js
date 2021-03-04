@@ -13,8 +13,8 @@ export default class Game extends React.Component {
     render() {
         return (
             <div className="Game">
-                <img className="background-image main-container" src="/background/ground_and_sky.svg" />
-                <img className="background-house main-container" src="/background/building.svg" />
+                <img className="background-image main-container" src="/background/ground_and_sky.svg" alt="" />
+                <img className="background-house main-container" src="/background/building.svg" alt="" />
                 <div className="flex-grid-roof">
                     <div className="col">
                         <div className="house-spacer-3rd" />

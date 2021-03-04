@@ -154,7 +154,7 @@ export default class RoomModal extends React.Component {
 
     render_prof() {
         return <div>
-            <img className="prof-img" src={this.state.prof_img} />
+            <img className="prof-img" src={this.state.prof_img} alt="" />
             <div className="progress-bar bg-success" role="progressbar"
                  style={{width: Math.round(this.props.room.progress*100) + "%", marginBottom: "15px"}} aria-valuenow="25" aria-valuemin="0"
                  aria-valuemax="100">{Math.round(this.props.room.progress*100)} %</div>
