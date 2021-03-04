@@ -25,7 +25,7 @@ export default class ProfListing extends React.Component
             }else{
                 btnProf = '';
             }
-            if (val.locked == this.props.displayInShop){
+            if (val.locked === this.props.displayInShop){
                 reshtml.push(
                     <div className='ProfBumper'>
                         <div class="card" style={{width: "18rem"}}>
