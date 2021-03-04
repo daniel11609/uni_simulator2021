@@ -77,7 +77,7 @@ export default class Room extends React.Component {
                             <img id={'room' + this.props.room.id} className='unlocked-img' src={this.getRoomImage(this.props.room.id, this.props.room.purchased)} alt=""/>
                             <p style={{textAlign: "center", fontWeight: "500"}}>
                                 {this.props.room.name}
-                                <span style={{color: "RGB(3, 223, 252)", fontWeight: "700"}}>{this.state.progress > 0 ? (" - "+Math.round(this.state.progress)+"%") : ("")}</span>
+                                <span style={{color: "RGB(3, 223, 252)", fontWeight: "700"}}>{this.props.room.progress > 0 ? (" - "+Math.round(this.props.room.progress*100)+"%") : ("")}</span>
                             </p>
                             <RoomModal setProf={this.setProf} open={this.state.modal_open} run={this.runCGU} progress={this.state.progress}
                                        close_modal={this.close_modal} room={this.props.room} profs={this.props.profs}
@@ -98,9 +98,10 @@ export default class Room extends React.Component {
         }
     }
 
-    close_modal = () => {
-        this.setState({modal_open: false})
+    close_modal = async () => {
+        await this.setState({modal_open: false})
     }
+
 
     getRoomImage(id=1, purchased=false) {
         //Returns the Image Corresponding to the Room state and id

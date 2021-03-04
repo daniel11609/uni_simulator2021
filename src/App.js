@@ -111,9 +111,7 @@ export default class App extends React.Component {
                     let prof_for_calc = null;
                     if(rooms[r].prof > -1) {
                         let prof_stats = Config.profs[rooms[r].prof-1];
-                        console.log(prof_stats)
                         prof_for_calc = {id : prof_stats.id, pop: prof_stats.pop, ex: prof_stats.ex}
-                        console.log(prof_for_calc)
                     }
                     rooms[r].starting_time = new_starting_time;
                     rooms[r].progress = current_round_progress;
@@ -123,7 +121,6 @@ export default class App extends React.Component {
                     let new_degrees = 0;
                     for(let i = 0; i < completed_rounds; i++) {
                         const stats = RoomCalc.calcRoom(room_for_calc, prof_for_calc);
-                        console.log(stats)
                         new_students += stats.studentAmount;
                         new_exmats += stats.exmatriculations;
                         new_degrees += stats.degrees;
@@ -148,6 +145,7 @@ export default class App extends React.Component {
         new_rooms[Number(id)-1] = room;
         await this.setState({rooms: new_rooms});
         this.save_to_storage("room_"+id, room);
+        this.forceUpdate()
     }
 
 

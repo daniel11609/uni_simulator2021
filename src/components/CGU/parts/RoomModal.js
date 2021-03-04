@@ -17,11 +17,12 @@ export default class RoomModal extends React.Component {
             free_profs: [], // prof_id
             prof_name: null,
             prof_img: null,
-            selected_prof: -1
+            selected_prof: -1,
+            data_loaded: false
         }
     }
 
-    componentDidMount() {
+    load_data() {
         this.setState({selected_prof: -1, prof_name: null, prof_img: null, free_profs: []})
         const prof_locations = this.props.get_prof_locations(); // returns array of tuples (prof_id, room_id)
         let free_profs = [];
@@ -30,15 +31,26 @@ export default class RoomModal extends React.Component {
                 free_profs.push(prof_locations[i][0]);
             }
         }
-        this.setState({free_profs: free_profs})
         if(this.props.room.prof > 0) {
             const prof_data = this.get_prof_by_id(this.props.room.prof);
             this.setState({prof_name: prof_data[0], prof_img: prof_data[1]})
         }
+        this.setState({free_profs: free_profs})
+    }
+
+     advanced_close_modal = async () => {
+        this.setState({selected_prof: -1, prof_name: null, prof_img: null, free_profs: [], data_loaded: false});
+        this.props.close_modal();
     }
 
 
     render() {
+        if(!this.state.data_loaded) {
+            if(this.props.open) {
+                this.load_data()
+                this.setState({data_loaded: true})
+            }
+        }
         return (
             <div className="RoomModal">
                 <Modal
@@ -46,11 +58,11 @@ export default class RoomModal extends React.Component {
                     aria-describedby="transition-modal-description"
                     className={"room-modal"}
                     open={this.props.open}
-                    onClose={this.props.close_modal}
+                    onClose={this.advanced_close_modal}
                     closeAfterTransition
                     BackdropComponent={Backdrop}
                     BackdropProps={{
-                        timeout: 500,
+                        timeout: 300,
                     }}
                 >
                     <Fade in={this.props.open}>
@@ -112,7 +124,7 @@ export default class RoomModal extends React.Component {
             new_room.running = false;
             new_room.progress = 0;
             await this.props.edit_room(this.props.room.id, new_room);
-            this.componentDidMount()
+            this.load_data()
         }
     }
 
@@ -127,7 +139,7 @@ export default class RoomModal extends React.Component {
         new_room.progress = 0;
         this.props.setProf(this.state.selected_prof)
         await this.props.edit_room(this.props.room.id, new_room);
-        this.componentDidMount()
+        this.load_data()
     }
 
     async remove_prof() {
@@ -137,7 +149,7 @@ export default class RoomModal extends React.Component {
         new_room.progress = 0;
         this.props.setProf(-1)
         await this.props.edit_room(this.props.room.id, new_room);
-        await this.componentDidMount()
+        await this.load_data()
     }
 
     render_prof() {
@@ -171,4 +183,13 @@ export default class RoomModal extends React.Component {
 
 
 
+}
+
+function sleep(milliseconds) {
+    let start = new Date().getTime();
+    for (let i = 0; i < 1e7; i++) {
+        if ((new Date().getTime() - start) > milliseconds){
+            break;
+        }
+    }
 }
