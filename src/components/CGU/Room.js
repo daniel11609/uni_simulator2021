@@ -104,7 +104,7 @@ export default class Room extends React.Component {
 
     getRoomImage(id=1, purchased=false) {
         //Returns the Image Corresponding to the Room state and id
-        let subjects = ['Biology', 'Computer_Science', 'Chemistry', 'Literature', 'Law', 'Maths', 'Mech_Engineering', 'Music', 'Sports', 'Geography', 'Elec_Engineering', 'Art'];
+        let subjects = ['Biology', 'Computer_Science', 'Chemistry', 'Literature', 'Law', 'Maths', 'Mech_Engineering', 'Music', 'Sports', 'History', 'Geography', 'Elec_Engineering', 'Art'];
         let path = 'Rooms/Color/'
         /*if(purchased){
             path += 'Color/'
