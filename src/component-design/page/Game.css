@@ -5,10 +5,18 @@
 .background-house {
     position: absolute;
     top: 40px;
-    z-index: -9;
+    z-index: -1;
     height: 896px;
     overflow: hidden;
 }
+.background-image {
+    height: 844px;
+    position: absolute;
+    object-fit: cover;
+    top: 92px;
+    z-index: -1;
+}
+
 
 .flex-grid-roof {
     display: flex;

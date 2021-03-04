@@ -1,9 +1,7 @@
 .ProfList{
     display: flex;
-    align-items: left;
-    justify-content: flex-start;
-    flex-direction: row;
-    flex-wrap: wrap;
+    justify-content: center;
+    flex-flow: row wrap;
 }
 
 .ProfBumper{

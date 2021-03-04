@@ -31,6 +31,7 @@ export default class NavBar extends React.Component  {
         root: {
           flexGrow: 1,
           display: "flex",
+            zIndex: 1
         },
         menuButton: {
           marginRight: theme.spacing(2),

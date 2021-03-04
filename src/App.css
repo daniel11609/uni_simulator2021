@@ -1,21 +1,20 @@
 .spacer {
   height: 30px;
 }
-
+.App {
+  /*background-color: rgba(127, 127, 127, 0.5);
+  z-index: -100;*/
+}
 .login-header {
   padding-top: 30px;
   text-align: center;
-}
-.background-image {
-  max-height: 100%;
-  position: absolute;
-  object-fit: cover;
-  top: 0px;
-  z-index: -10;
 }
 
 .main-container {
   width: 1350px;
   height: 935px;
   margin: auto;
+}
+.main-nav {
+  z-index: 1;
 }

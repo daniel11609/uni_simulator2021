@@ -16,6 +16,7 @@ export default class Settings extends React.Component {
     render() {
         return (
             <div className="Settings">
+                <div className="background-div" />
                 <div className="spacer"/>
                 <div class="card" style={{margin:"15px"}}>
                     <div class="card-header" > 

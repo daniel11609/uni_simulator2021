@@ -19,12 +19,12 @@ export default class Shop extends React.Component {
 
     render() {
         return (
-            <div className="ShopContainer">
+            <div className="ShopContainer background-div-shop ">
                 <h1 className="ShopSectionHeader">Profs</h1>
                 <div className="Profs">
-                <ProfListing prof={this.props.profs} displayInShop={true}/>
+                    <ProfListing prof={this.props.profs} displayInShop={true}/>
                 </div>
-                <h1 className="ShopSectionHeader">Items</h1>
+                <h1 className="ShopSectionHeader item-header">Items</h1>
                 <div className="Shop">
                 {
                     this.props.items.map((data, id) => {
