@@ -166,9 +166,7 @@ export default class Room extends React.Component {
         this.props.edit_room(room.id, room);
     }
 
-    doUpdate() {
-        //do update enough money ? -> update-> write in local storage  
-    }
+
     calcRoom(room, prof) {
         /**
          * room:{ id:0,
@@ -204,7 +202,7 @@ export default class Room extends React.Component {
         }
     }
 
-    
+
 
 }
 
