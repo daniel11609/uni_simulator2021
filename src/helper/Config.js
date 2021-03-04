@@ -40,8 +40,8 @@ export default class Config {
                     {id:13, name:"Holy Nicotina", locked: true, img:"/profs/prof13.svg", pop:0.2, ex:1, price:900},
                     {id:14, name:"Mc Data", locked: true, img:"/profs/prof14.svg", pop:4.20, ex:4.20, price:10000000}]
                     
-    static currencies =  [{id:1, name:"student",amount:0},
-                        {id:2,name:"exmat",amount:69},
-                        {id:3,name:"degree",amount:100},
+    static currencies =  [{id:1, name:"student",amount:1},
+                        {id:2,name:"exmat",amount:1},
+                        {id:3,name:"degree",amount:1},
     ]
 }
