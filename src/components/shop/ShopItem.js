@@ -13,11 +13,6 @@ import '../../component-design/shop/ShopItem.css';
 
 export default class ShopItem extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
-
     render() {
         return (
             <div item_id={this.props.id} className="ShopItem">
