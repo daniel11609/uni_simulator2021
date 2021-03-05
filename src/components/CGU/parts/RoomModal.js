@@ -73,7 +73,7 @@ export default class RoomModal extends React.Component {
                             <p>
                                 <SpeedIcon /><span> Equipment: <strong>{this.props.room.equipment} / 5</strong></span>
                                 <span style={{ marginLeft: "10px" }}></span>
-                                <button className={"btn btn-primary " + (this.props.room.equipment === 5 ? ("disabled") : (""))} style={{ padding: "0px 6px 0px 5px" }}
+                                <button className={"btn btn-primary " + (this.props.room.equipment >= 5 ? ("disabled") : (""))} style={{ padding: "0px 6px 0px 5px" }}
                                     onClick={async () => { await this.add_equipment() }}>+</button>
                                 <br />
                                 <PeopleIcon /> Capacity: <strong>{this.props.room.capacity}</strong>
@@ -116,15 +116,18 @@ export default class RoomModal extends React.Component {
                 alert("Not enough balance.");
                 return;
             }
-            let new_currency = this.props.load_from_storage("currencies_3");
-            new_currency.amount = Number(new_currency.amount) - upgrade_cost
-            this.props.save_to_storage("currencies_3", new_currency);
-            let new_room = this.props.room;
-            new_room.equipment += 1;
-            new_room.running = false;
-            new_room.progress = 0;
-            await this.props.edit_room(this.props.room.id, new_room);
-            this.load_data()
+            if(this.props.room.equipment < 5) {
+                let new_currency = this.props.load_from_storage("currencies_3");
+                new_currency.amount = Number(new_currency.amount) - upgrade_cost
+                this.props.save_to_storage("currencies_3", new_currency);
+                let new_room = this.props.room;
+                new_room.equipment += 1;
+                new_room.running = false;
+                new_room.progress = 0;
+                await this.props.edit_room(this.props.room.id, new_room);
+                this.load_data()
+            }
+
         }
     }
 
