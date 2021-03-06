@@ -13,11 +13,12 @@ Contributors:
 Joschua Sillmann, Alessa Bayer, Cedric Schmidt, Daniel Erhard, Manuel Emmert, Tim Bader, Xena Letters, Elenora Stober 
 
 
-Live Version:
+Live Version (firebase):
 
-https://uni-sim2021.web.app/
 
 https://2021-uni-si.ml/
+
+https://2021uni-si.ml/
 
 
 
