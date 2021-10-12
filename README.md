@@ -6,6 +6,8 @@ Uni simulator 2021 is a university project within the scope of the Software Engi
 The goal of the project is to create a game that combines the two aspects of a clicker game with a simulation of everyday university life.
 Accordingly, Uni-Simulator 2021 is a browser game from the Idle - genre, which is completely stored on the user devices and only runs locally.
 
+You can play by adding professors to different rooms to let them teach a certain amount of students. At the end of each lesson you earn different types of currencies to unlock more features.
+
 The technologies used mainly include: 
 HTML, JavaScript, React.js, Photoshop
 
