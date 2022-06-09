@@ -17,5 +17,4 @@ Joschua Sillmann, Alessa Bayer, Cedric Schmidt, Daniel Erhard, Manuel Emmert, Ti
 
 Live Version (GitHub):
 
-
-https://badertim.github.io/uni_simulator2021/
+https://badertim.github.io/uni-simulator-2021/
